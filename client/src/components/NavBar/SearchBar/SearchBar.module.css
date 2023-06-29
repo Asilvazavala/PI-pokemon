@@ -1,0 +1,79 @@
+.containerSerchBar {
+  position: relative;
+  display: flex;
+}
+
+.containerSerchBar button {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.inputSearch {
+  color: black;
+  font-size: 1.2rem;
+  max-width: 220px;
+  border-radius: 8px;
+  margin-right: 10px;
+  padding: 0 10px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.inputFocused:focus {
+  border: 3px solid var(--red-light);
+  outline: none;
+}
+
+.quantityResults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.containerResults {
+  position: absolute;
+  z-index: 1;
+  width: 220px;
+  box-sizing: border-box;
+}
+
+/* Responsive SearchBar */
+
+@media only screen and (max-width: 980px) {
+  .containerSerchBar {
+    flex-direction: column;
+  }
+
+  .quantityResults {
+    justify-content: start;
+  }
+
+  .inputSearch {
+    max-width: 65%;
+    height: 2.5rem;
+  }
+
+  .containerSerchBar button {
+    max-width: 35%;
+    max-height: 2.5rem;
+  }
+
+  .containerResults {
+    width: 155%;
+  }
+}
+
+
+@media only screen and (max-width: 390px) {
+  .inputSearch {
+    max-width: 60%;
+  }
+
+  .containerSerchBar button {
+    max-width: 40%;
+  }
+}

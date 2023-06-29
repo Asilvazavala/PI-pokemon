@@ -1,0 +1,52 @@
+/* General */
+
+.buttonsDetail {
+  font-size: 30px;
+  cursor: pointer;
+  margin: 0 20px 5px 0;
+  border-radius: 12px;
+}
+
+.hideButton{
+  display: none;
+}
+
+.containerButtons {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Button return */
+
+.buttonReturn{
+  background-color: rgb(255, 196, 93);
+}
+
+.buttonReturn:hover{
+  background: #da8320;
+  box-shadow: 0 0 10px #da8320, 0 0 40px #da8320, 0 0 80px #da8320;
+}
+
+/* Button delete */
+
+.buttonDelete{
+  background-color: rgb(247, 100, 100);
+}
+
+.buttonDelete:hover{
+  background: #bc2e2e;
+  box-shadow: 0 0 10px #bc2e2e, 0 0 40px #bc2e2e, 0 0 80px #bc2e2e;
+}
+
+/* Button update */
+
+.buttonUpdate{
+  background-color: rgb(144, 225, 117);
+}
+
+.buttonUpdate:hover{
+  background: #15c012;
+  box-shadow: 0 0 10px #15c012, 0 0 40px #15c012, 0 0 80px #15c012;  
+}

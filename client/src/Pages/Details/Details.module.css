@@ -1,0 +1,86 @@
+/* General */
+
+.textBig {
+  font-size: 25px;
+  color: black;
+  text-align: center;
+}
+
+.textMedium {
+  font-size: 20px;
+  color: #f0002c;
+  text-align: center;
+}
+
+.textSmall {
+  font-size: 17px;
+  color: #f0002c9f;
+  text-align: center;
+}
+
+.imgCenter {
+  display: block;
+  margin: auto;
+  background-color: #f46337;
+  width: 100%;
+}
+
+.hideDetails {
+  display: none;
+  background-image: none
+}
+
+/* Card */
+
+.containerDetails{
+  background-image: url('../../images/Pikachu.jpg');
+  background-size: 100% 100%;
+}
+
+.cardContainer {
+  border: 2px solid black;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  max-width: 300px;
+  height: 500px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.card-detail-h1 {
+  font-size: 20px;
+  color: #212d44;
+  font-weight: 800;
+}
+
+/* Loading */
+.containerLoader {
+  display: flex;
+  justify-content: center;
+}
+
+.loader {
+  width: 100px;
+  height: 110px;
+  position: absolute;
+  top: 40%;
+  margin: 0 auto;
+  border: 5px solid #ec9c9c;
+  border-bottom-color: #FF3D00;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

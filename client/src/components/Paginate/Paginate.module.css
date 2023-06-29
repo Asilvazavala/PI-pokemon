@@ -1,0 +1,7 @@
+.hidePaginate {
+  display: none;
+}
+
+.containerPaginate nav li button {
+  color: #f0002c !important;
+}

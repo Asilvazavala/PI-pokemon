@@ -1,0 +1,182 @@
+/* General*/
+
+.textBig {
+  font-size: 25px;
+  color: #45020fee;
+  text-align: center;
+  display: block;
+  font-weight: 600;
+}
+
+.textMedium {
+  font-size: 20px;
+  color: #45020fb1;
+  text-align: center;
+  display: block;
+  font-weight: 400;
+}
+
+
+.imgCenter {
+  display: block;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  background-color: #45020ff2;
+  width: 95%;
+  height: 220px;
+}
+
+.Link {
+  text-decoration: none;
+}
+
+.hideElement {
+  display: none;
+}
+
+
+/* Button Load */
+
+.buttonLoad {
+  margin: auto;
+  padding: 5px;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 100%;
+  background: #f0002c;
+  border: 2px solid #f0002c;
+  border-radius: 8px;
+  font-size: 19px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  z-index: 1;
+  overflow: hidden;
+  transition: .5s;
+}
+
+
+.buttonLoad:hover {
+  color:#f0002c !important;
+}
+
+
+.buttonLoad::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: white !important;
+  z-index: -1;
+  transition: .5s;
+  animation: manipActiveHover .1s forwards; 
+  animation-delay: 4s;
+  pointer-events: none;
+}
+
+.buttonLoad:hover::before {
+  width: 100%;
+}
+
+/* Animation Logo */
+@keyframes showRight {
+  100% {
+    width: 0;
+  }
+}
+@keyframes manipActiveHover {
+  100% {
+    pointer-events: auto;
+  }
+}
+
+/* Card */
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, min(min(100%, 25%)));
+}
+
+.card {
+  display: block;
+  border: 2px solid black;
+  margin: 20px 30px 10px 0;
+  transition: all 1s ease-out;
+  background-color: white;
+  opacity: 80%;
+}
+
+.card:hover {
+  box-shadow: 20px 20px 20px rgb(0, 0, 0);
+  opacity: 100%;
+}
+
+/* Loading */
+
+.loader {
+  width: 100px;
+  height: 110px;
+  border: 5px solid #ec9c9c;
+  border-bottom-color: #FF3D00;
+  border-radius: 50%;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+
+/* Responsive */
+
+@media only screen and (max-width: 800px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fill, min(min(100%, 33%)));
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fill, min(min(100%, 50%)));
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .textBig {
+    font-size: 23px;
+  }
+  .textMedium {
+    font-size: 18px;
+  }
+  .imgCenter {
+    width: 100%;
+    height: 200px;
+    padding: 0;
+    margin: 0;
+  }
+ .buttonLoad {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fill, min(min(100%, 100%)));
+  }
+}

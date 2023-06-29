@@ -1,0 +1,39 @@
+.audio {
+  max-width: 300px;
+  margin-right: 20px;
+  height: 30px;
+}
+
+/* Responsive Audio */
+
+@media only screen and (max-width: 998px) {
+  .audio {
+    max-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 897px) {
+  .audio {
+    max-width: 100px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .audio {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .audio {
+    display: flex;
+    margin-bottom: 15px;
+    max-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 244px) {
+  .audio {
+    max-width: 150px;
+  }
+}

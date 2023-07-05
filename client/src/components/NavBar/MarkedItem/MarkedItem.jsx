@@ -1,7 +1,7 @@
 import {useMemo} from 'react';
 import styles from './MarkedItem.module.css';
 
-export const MarkedItem = ({ item, search, onClick }) => {
+export const MarkedItem = ({ item, search, onClick, setSidebarState }) => {
 
   // Encontrar las posiciones de las letras a marcar
   const getMarkedPositions = (item, search) => {
@@ -22,6 +22,7 @@ export const MarkedItem = ({ item, search, onClick }) => {
   // Pasar por props el item clickeado
   const hanldeClick = () => {
     onClick(item.name);
+    setSidebarState(false)
   };
 
 

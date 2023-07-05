@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNotification } from '../hooks/useNotification';
 
 // GET ALL POKEMON--------------------------------------------------------------------------------
 export const getAllPokemon = () => {
@@ -27,6 +28,7 @@ export const GET_TYPES = 'GET_TYPES';
 // SEARCH POKEMON BY NAME-------------------------------------------------------------------------
 export const searchPokemonByName = (search) => {
   return async (dispatch) => {
+    const { notificationError } = useNotification();
     try {
       let json = await axios.get(`/pokemon?name=${search}`);
       return dispatch({
@@ -35,7 +37,7 @@ export const searchPokemonByName = (search) => {
       })
     }
     catch(error) {
-      alert(`Pokemon "${search}" not found, try with another`)
+      return notificationError(`Pokemon "${search}" not found, try with another`)
     }
   }
 };

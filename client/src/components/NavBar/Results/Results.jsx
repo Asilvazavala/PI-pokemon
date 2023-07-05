@@ -1,7 +1,7 @@
 import {useState, useMemo, useEffect} from 'react';
 import { MarkedItem } from '../MarkedItem/MarkedItem';
 
-export const Results = ({ allPokemon, onItemSelected, search, onResultsCalculated }) => {
+export const Results = ({ allPokemon, onItemSelected, search, onResultsCalculated, setSidebarState }) => {
   
   // Resultados de la búsqueda en la SearchBar
   const [results, setResults] = useState([]);
@@ -37,6 +37,7 @@ export const Results = ({ allPokemon, onItemSelected, search, onResultsCalculate
             item={el} 
             search={search}
             onClick={onItemSelected}
+            setSidebarState={setSidebarState}
           />)
         : ''
       }

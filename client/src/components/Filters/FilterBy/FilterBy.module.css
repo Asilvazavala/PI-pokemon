@@ -1,7 +1,31 @@
 .containerMain {
   display: flex;
   flex-wrap: wrap;
-  font-size: 25px;
+  gap: 6px;
+}
+
+.containerMain article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.containerMain article .btnType {
+  text-align: center;
+  cursor: pointer;
+  background: var(--red-light);
+  color: var(--red);
+  font-size: 1rem;
+  height: auto;
+  padding: 8px 20px;
+  font-weight: bold;
+  transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+
+.containerMain article .btnType:hover {
+  color: var(--red-light);
+  background: var(--red);
 }
 
 .filters {
@@ -11,12 +35,8 @@
   border-radius: 5px;
   padding: 5px;
   margin-right: 20px;
-  transition: all 1s ease-out;
 }
 
-.filters:hover {
-  padding: 10px;
-}
 
 @media only screen and (max-width: 500px) {
   .containerMain {

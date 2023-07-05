@@ -6,6 +6,7 @@
 .containerSerchBar button {
   cursor: pointer;
   font-size: 1.2rem;
+  margin-right: 20px;
 }
 
 .inputSearch {
@@ -59,7 +60,7 @@
 
   .containerSerchBar button {
     max-width: 35%;
-    max-height: 2.5rem;
+    height: 2.5rem;
   }
 
   .containerResults {
@@ -75,5 +76,6 @@
 
   .containerSerchBar button {
     max-width: 40%;
+    padding: 5px 2px;
   }
 }

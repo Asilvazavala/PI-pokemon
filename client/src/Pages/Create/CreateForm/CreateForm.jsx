@@ -1,21 +1,20 @@
 import { useEffect } from 'react';
 import styles from './CreateForm.module.css';
-import { postPokemon, getAllPokemon } from '../../../redux/actions';
 import { useFunctions } from '../../../hooks/useFunctions';
+import { useNotification } from '../../../hooks/useNotification';
 
 export const CreateForm = ({ input, setInput, disabled }) => {
-  const { dispatch, history, id } = useFunctions();
+  const { dispatch, history, id, getAllPokemon, postPokemon } = useFunctions();
+  const { notificationSuccess } = useNotification();
 
-  // Ejecuto en automático la action para obtener los pokemon 
   useEffect(() => {
     dispatch(getAllPokemon());
   },[dispatch])
 
-  // Crear el pokemon
   function handleSubmit(e) {
     e.preventDefault(); 
     dispatch(postPokemon(input));
-    alert('Pokemon created succesfully!!'); 
+    notificationSuccess('Pokemon created succesfully!!'); 
     setInput({
       name: '',
       image: '',
@@ -32,8 +31,7 @@ export const CreateForm = ({ input, setInput, disabled }) => {
 
 
   return (
-    <div>
-      {/* Button create */}
+    <main>
       <button 
         className={id ? styles.hideButton : `${styles.buttonCreate} btn btn-primary`} 
         type="button"
@@ -41,6 +39,6 @@ export const CreateForm = ({ input, setInput, disabled }) => {
         disabled={disabled || !input.types.length}
       >Create Pokemon
       </button>
-    </div>
+    </main>
   )
 }

@@ -6,31 +6,24 @@ import { DetailsButtons } from './DetailsButtons/DetailsButtons';
 import { useFunctions } from '../../hooks/useFunctions';
 
 export const Details = () => {
-  const { dispatch, history, id, useSelector } = useFunctions();
+  const { dispatch, id, useSelector } = useFunctions();
+  const pokemonDetail = useSelector((state) => state.detail)
 
-  // Me traigo los estados del reducer
-  let pokemonDetail = useSelector((state) => state.detail)
-
-  // Ejecuto en automático la action para renderizar al pokemon que necesito
   useEffect(() => {
-    dispatch(getPokemonDetail(id));
-  },[dispatch]);
- 
-  // Ejecuto en automático la action para obtener los pokemon 
-  useEffect(() => {
-    dispatch(getAllPokemon());
-  },[dispatch])
-
+    if (id) {
+      dispatch(getPokemonDetail(id));
+      dispatch(getAllPokemon());
+    }
+  },[dispatch, id]);
 
   return (
-    <div className={styles.containerDetails}>
+    <main className={styles.containerDetails}>
      <NavBar /> 
      { 
-        pokemonDetail.length > 0 ?
-          <div className={pokemonDetail.length > 0 ? styles.cardContainer : styles.hideDetails}>
-            {/* Elementos de la cardDetail */}
-
-            <div>
+        pokemonDetail.length > 0 
+          ?
+          <section className={pokemonDetail.length > 0 ? styles.cardContainer : styles.hideDetails}>
+            <picture>
               <img 
                 className={styles.imgCenter}
                 src = {pokemonDetail[0].img ? pokemonDetail[0].img : pokemonDetail[0].image} 
@@ -38,9 +31,9 @@ export const Details = () => {
                 width = '200px'
                 height = '200px' 
               />
-            </div>
+            </picture>
 
-            <div>
+            <section>
               <h1 className={styles.textBig}>{pokemonDetail[0].name}</h1>
               <h2 className={styles.textMedium}> Type(s): {!pokemonDetail[0].createdInDB ? pokemonDetail[0].types + ' ' : `${pokemonDetail[0].types.map(el => el.name)}`}</h2>
               <h3 className={styles.textSmall}> Attack: {pokemonDetail[0].attack}</h3>
@@ -50,11 +43,12 @@ export const Details = () => {
               <h3 className={styles.textSmall}> Speed: {pokemonDetail[0].speed}</h3>
               <h2 className={styles.textMedium}> Weight: {pokemonDetail[0].weight}</h2>
               <h3 className={styles.textSmall}> Number: {pokemonDetail[0].id}</h3>
-            </div>
-          </div> 
-          : <div className={styles.containerLoader}><span className={styles.loader}></span></div>
+            </section>
+          </section> 
+          : 
+          <aside className={styles.containerLoader}><span className={styles.loader}></span></aside>
      }
-      <DetailsButtons id={id} pokemonDetail={pokemonDetail} history={history} dispatch={dispatch} />
-    </div>
+      <DetailsButtons pokemonDetail={pokemonDetail} />
+    </main>
   )
 }

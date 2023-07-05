@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { useFunctions } from './useFunctions'
 import { usePaginate } from './usePaginate'
+import { useNotification } from './useNotification'
 
 export const useSearchBar = () => {
   const { dispatch, history, searchPokemonByName } = useFunctions();
   const { setCurrentPage } = usePaginate();
+  const { notificationError } = useNotification();
   
   const [results, setResults] = useState([]);
   const [search, setSearch] = useState('');
@@ -15,13 +17,15 @@ export const useSearchBar = () => {
     setSearch(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {    
     e.preventDefault();
-    setSidebarState(false);
-    history('/home');
-    setCurrentPage(1);
+    if (!search) {
+      return notificationError('Enter a valid pokemon please')
+    }
     dispatch(searchPokemonByName(search));
     setSearch('');
+    setCurrentPage(1);
+    history('/home');    
   };
 
   const handleResults = (items) => {
@@ -30,11 +34,10 @@ export const useSearchBar = () => {
 
   const handleItemSelected = (item) => {  
     setSearch(item)
-    setSidebarState(false);
-    history('/home');
     setCurrentPage(1);
     dispatch(searchPokemonByName(item))
     setSearch('');
+    history('/home');
   }
 
   return { results, handleChange, handleSubmit, handleResults, handleItemSelected, search, sidebarState, setSidebarState }

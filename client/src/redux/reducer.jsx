@@ -1,3 +1,5 @@
+import { useNotification } from '../hooks/useNotification';
+
 import {
   GET_POKEMON,
   GET_TYPES,
@@ -22,6 +24,7 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
+  const { notificationError } = useNotification();
   switch(action.type) {
     case GET_POKEMON:
       return {
@@ -96,7 +99,7 @@ const rootReducer = (state = initialState, action) => {
         if (action.payload === 'allPokemon') { 
           return state.pokemon
         } else if (!filterPokemonByDbOrApi.length) {
-            alert('No pokemon in the DB yet :(')
+          notificationError('No pokemon in the DB yet :(')
             return state.allPokemon
           } else {
               return filterPokemonByDbOrApi;
@@ -126,7 +129,7 @@ const rootReducer = (state = initialState, action) => {
         if (action.payload === 'allTypes') { 
           return allPokemonTypes 
         } else if (!allTypes.length) {
-            alert(`No pokemon of type "${action.payload}" try with another`)
+          notificationError(`No pokemon of type "${action.payload}" try with another`)
             return state.allPokemon
           } else {
               return allTypes;

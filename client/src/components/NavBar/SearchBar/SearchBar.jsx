@@ -3,13 +3,13 @@ import { Results } from '../Results/Results'
 import { useSearchBar } from '../../../hooks/useSearchBar'
 import { usePaginate } from '../../../hooks/usePaginate'
 
-export const SearchBar = () => {
+export const SearchBar = ({ setSidebarState }) => {
   const { results, handleChange, handleSubmit, handleResults, handleItemSelected, search } = useSearchBar()
   const { pokemon } = usePaginate()
 
   return (
     <main>
-      <form className={`${styles.containerSerchBar}`} role="search" onSubmit={handleSubmit}>
+      <form className={`${styles.containerSerchBar}`} role="search" onSubmit={(e) => { handleSubmit(e); search && setSidebarState(false); }}>
         { 
           search.length > 0 && 
           <article className={styles.quantityResults}>
@@ -40,6 +40,7 @@ export const SearchBar = () => {
               onItemSelected={handleItemSelected} 
               search={search} 
               onResultsCalculated={handleResults}
+              setSidebarState={setSidebarState}
             />
           }
           </aside>

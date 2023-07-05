@@ -7,16 +7,11 @@ export const Card = () => {
   const { currentPokemon } = usePaginate();
   const { dispatch, getAllPokemon, Link } = useFunctions();
 
-  // Ejecuto en automático la action para obtener la info de la DB y actualizar las card
-  useEffect(() => {
-  dispatch(getAllPokemon());
+  useEffect(() => {    
+    if (currentPokemon.length !== 1) {
+      dispatch(getAllPokemon());
+    }
   },[])
-
-  // Recargar todos los pokemon 
-  const handleLoadPokemon = (e) => {
-    e.preventDefault();
-    dispatch(getAllPokemon());
-  };
 
   // const [mainImage, setMainImage] = useState(null)
   const [currentImage, setCurrentImage] = useState(null)
@@ -37,19 +32,14 @@ export const Card = () => {
 
 
   return (
-    <div>
-      <button 
-        className={currentPokemon.length > 0 ? `${styles.buttonLoad} d-flex mt-2` : styles.hideElement} 
-        onClick={handleLoadPokemon} 
-        >Load Pokemon
-      </button>
+    <main>
       <ul className={styles.cardContainer}>
       
       {
         currentPokemon.length > 0 ? 
         currentPokemon.map((el) => {
           return ( 
-          <div 
+          <section 
             // onMouseEnter={() => changeImage(el)} 
             // onMouseLeave={() => regretImage(el)} 
             title='Clic to see more details' key = {el.id} >
@@ -64,13 +54,13 @@ export const Card = () => {
                   <h3 className={styles.textMedium}>{`Pokedex Id: ${el.id}`}</h3>
               </Link>
             </li>                      
-          </div>
+          </section>
           )
         }) 
         : <span className={styles.loader}></span>
        }
 
       </ul>  
-    </div>
+    </main>
   )
 }

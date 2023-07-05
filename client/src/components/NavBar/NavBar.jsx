@@ -6,13 +6,15 @@ import { MenuMobile } from '../../images/SVG/MenuMobile'
 import { CloseMenuMobile } from '../../images/SVG/CloseMenuMobile'
 import { PlusIcon } from '../../images/SVG/PlusIcon'
 import { HomeIcon } from '../../images/SVG/HomeIcon'
+import { ToastContainer } from 'react-toastify'
 
-export const NavBar = ({ allPokemon, setCurrentPage }) => {
+export const NavBar = () => {
   const { sidebarState, setSidebarState } = useSearchBar();
   const { location, NavLink } = useFunctions();
 
   return (
     <section className={styles.container}>
+      <ToastContainer />
       <nav className={styles.navbar}>
         <ul className={styles.link_group}>
           <li><a className={styles.logo} href="/">POKEMON</a></li>
@@ -31,7 +33,7 @@ export const NavBar = ({ allPokemon, setCurrentPage }) => {
         </ul>
 
         <article className={styles.link_group}>
-          <SearchBar allPokemon={allPokemon} setCurrentPage={setCurrentPage} />
+          <SearchBar setSidebarState={setSidebarState} />
         </article>
       </nav>     
 
@@ -48,6 +50,7 @@ export const NavBar = ({ allPokemon, setCurrentPage }) => {
         </span>
       </nav>
 
+      { sidebarState &&
       <main
         className={`${styles.sidebar} ${
           sidebarState ? styles.active_sidebar : null
@@ -80,10 +83,11 @@ export const NavBar = ({ allPokemon, setCurrentPage }) => {
             <PlusIcon />
           </NavLink>
           <footer>
-            <SearchBar allPokemon={allPokemon} setCurrentPage={setCurrentPage} />
+            <SearchBar setSidebarState={setSidebarState} />
           </footer>
         </aside>
       </main>
+      }
     </section>
   )
 }

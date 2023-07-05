@@ -1,7 +1,6 @@
 .containerMain {
   display: flex;
   flex-wrap: wrap;
-  font-size: 25px;
 }
 
 .filters {
@@ -11,13 +10,9 @@
   border-radius: 5px;
   padding: 5px;
   margin-right: 20px;
-  transition: all 1s ease-out;
   margin-bottom: 15px;
 }
 
-.filters:hover {
-  padding: 10px;
-}
 
 @media only screen and (max-width: 500px) {
   .containerMain {

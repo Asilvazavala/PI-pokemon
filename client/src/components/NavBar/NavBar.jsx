@@ -28,7 +28,7 @@ export const NavBar = () => {
             to="/create" 
             style={{textDecoration: 'none', color: 'rgba(255, 255, 255, 0.8)'}} 
             className={location.pathname === "/create" ? styles.activeLink : styles.link}>
-            <h2>Create your game!</h2>
+            <h2>Create your pokemon!</h2>
           </NavLink>
         </ul>
 

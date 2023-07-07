@@ -1,13 +1,26 @@
 .containerFilters {
   display: flex;
-  justify-content: start;
-  margin: 0 30px;
-  padding: 80px 20px 5px 20px;
-  background: #58373d;
+  flex-direction: column;
+}
+
+.containerFilters .orderBy {
+  background: #300b1271;
+  margin: 0 60px 0 30px;
+  padding: 80px 20px 10px 20px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
-.hideFilters {
-  display: none;
+.containerFilters .activeFilters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+  .containerFilters {
+    padding: 80px 10px 10px 10px;
+    margin: 0 30px 0 10px;
+  }
 }

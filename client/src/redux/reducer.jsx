@@ -12,7 +12,8 @@ import {
   POST_POKEMON,
   DELETE_POKEMON,
   UPDATE_POKEMON,
-  RESET_POKEMON
+  RESET_POKEMON,
+  SET_ACTIVE_FILTERS
 } from './actions';
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   types: [],
   allTypes: [],
   detail: [],
+  activeFilter: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -48,46 +50,20 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case ORDER_POKEMON_BY_NAME:
-    let orderName = action.payload === 'A-Z' ?
-      state.allPokemon.sort(function (a, b) {
-        if (a.name > b.name) {
-          return 1;
-        } else if (a.name < b.name) {
-            return -1;
-        }
-        return 0 
-      }) : 
-      state.allPokemon.sort(function (a, b) {
-        if (a.name > b.name) {
-          return -1;
-        } else if (a.name < b.name) {
-            return 1;
-        }
-        return 0 
-      })
+      const sortedPokemonName = [...state.allPokemon]; // Crear una copia de la lista de Pokémon
+      const orderName = action.payload === 'A-Z' 
+        ? sortedPokemonName.sort((a, b) => a.name.localeCompare(b.name)) // Orden ascendente
+        : sortedPokemonName.sort((a, b) => b.name.localeCompare(a.name)); // Orden descendente
       return {
         ...state,
         allPokemon: orderName
       }
       
     case ORDER_POKEMON_BY_ATTACK:
-      let orderAttack = action.payload === 'worstAttack' ?
-        state.allPokemon.sort(function (a, b) {
-          if (a.attack > b.attack) {
-            return 1;
-          } else if (a.attack < b.attack) {
-              return -1;
-          }
-          return 0 
-        }) : 
-        state.allPokemon.sort(function (a, b) {
-          if (a.attack > b.attack) {
-            return -1;
-          } else if (a.attack < b.attack) {
-              return 1;
-          }
-          return 0 
-        })
+      const sortedPokemon = [...state.allPokemon]; // Crear una copia de la lista de Pokémon
+      const orderAttack = action.payload === 'worstAttack' 
+        ? sortedPokemon.sort((a, b) => a.attack - b.attack) // Orden ascendente
+        : sortedPokemon.sort((a, b) => b.attack - a.attack); // Orden descendente
       return {
         ...state,
         allPokemon: orderAttack
@@ -161,8 +137,18 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       }
 
-    case RESET_POKEMON:
-      return { ...state, pokemon: false}
+    case SET_ACTIVE_FILTERS:
+      let activeFilters = [...state.activeFilter] // Crear una copia de la lista de Pokémon
+      if (activeFilters.includes(action.payload)) {
+        activeFilters = activeFilters.filter((filterType) => filterType !== action.payload);
+      } else {
+        activeFilters = [...activeFilters, action.payload];
+        }
+  
+      return {
+        ...state,
+        activeFilter: activeFilters
+      }
     
       default:
         return state;

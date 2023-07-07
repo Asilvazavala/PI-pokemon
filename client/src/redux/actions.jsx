@@ -131,3 +131,12 @@ export const resetPokemon = () => {
 }
 export const RESET_POKEMON= 'RESET_POKEMON';
 
+// ACTIVE FILTERS-----------------------------------------------------------------------------------
+export const setActiveFilters = (payload) => {
+      return ({
+        type: 'SET_ACTIVE_FILTERS',
+        payload
+      })
+  }
+export const SET_ACTIVE_FILTERS = 'SET_ACTIVE_FILTERS';
+

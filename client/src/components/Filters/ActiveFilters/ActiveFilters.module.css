@@ -1,0 +1,9 @@
+.main p {
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.main span {
+  color: var(--red);
+}

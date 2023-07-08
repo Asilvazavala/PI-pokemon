@@ -30,8 +30,8 @@ export const OrderBy = () => {
           <ul onClick={() => toggleMenu('orderBy')}>
             <li id='A-Z' onClick={(e) => (handleOrderPokemonByName(e))}>A-Z</li>
             <li id='Z-A' onClick={(e) => (handleOrderPokemonByName(e))}>Z-A</li>
-            <li id='mostAttack' onClick={(e) => (handleOrderPokemonByAttack(e))}>Most attack</li>
-            <li id='worstAttack' onClick={(e) => (handleOrderPokemonByAttack(e))}>Worst attack</li>
+            <li id='Most-attack' onClick={(e) => (handleOrderPokemonByAttack(e))}>Most attack</li>
+            <li id='Worst-attack' onClick={(e) => (handleOrderPokemonByAttack(e))}>Worst attack</li>
           </ul>
         )}
       </span>
@@ -41,8 +41,8 @@ export const OrderBy = () => {
         Source
         {isOpen.selectSource && (
           <ul onClick={() => toggleMenu('selectSource')}>
-            <li id='api' onClick={(e) => (handleFilterPokemonByDbOrApi(e))}>Api</li>
-            <li id='db' onClick={(e) => (handleFilterPokemonByDbOrApi(e))}>Custom</li>
+            <li id='Api' onClick={(e) => (handleFilterPokemonByDbOrApi(e))}>Api</li>
+            <li id='Custom' onClick={(e) => (handleFilterPokemonByDbOrApi(e))}>Custom</li>
           </ul>
         )}
       </span>

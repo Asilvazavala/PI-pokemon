@@ -1,4 +1,4 @@
-import { orderPokemonByName, orderPokemonByAttack, filterPokemonByDbOrApi, filterPokemonByType, getAllTypes, getAllPokemon, setActiveFilters } from '../redux/actions';
+import { orderPokemonByName, orderPokemonByAttack, filterPokemonByDbOrApi, filterPokemonByType, getAllTypes, resetPokemon, setActiveFilters, resetFilters } from '../redux/actions';
 import { useFunctions } from '../hooks/useFunctions'
 import { usePaginate } from '../hooks/usePaginate'
 import { useState, useEffect, useRef } from 'react'
@@ -44,6 +44,7 @@ export const useFilters = () => {
     setOrden(`Ordenado ${e.target.id}`);
     setCurrentPage(1);
     toggleMenu('orderBy')
+    dispatch(setActiveFilters(e.target.id, 'order'));
   };
 
   const handleOrderPokemonByAttack = (e) => {
@@ -52,6 +53,7 @@ export const useFilters = () => {
     setOrden(`Ordenado ${e.target.id}`);
     setCurrentPage(1);
     toggleMenu('orderBy');
+    dispatch(setActiveFilters(e.target.id, 'order'));
   };
 
   const handleFilterPokemonByDbOrApi = (e) => {
@@ -60,6 +62,7 @@ export const useFilters = () => {
     setOrden(`Ordenado ${e.target.id}`);
     setCurrentPage(1);
     toggleMenu('selectSource');
+    dispatch(setActiveFilters(e.target.id, 'source'));
   };
 
   const handleFilterPokemonByType = (e) => {
@@ -67,7 +70,7 @@ export const useFilters = () => {
     dispatch(filterPokemonByType(typeId));
     e.preventDefault();
     setCurrentPage(1);
-    dispatch(setActiveFilters(typeId));
+    dispatch(setActiveFilters(typeId, 'type'));
 
     if (selectedType === typeId) {
       setSelectedType(null);
@@ -77,7 +80,8 @@ export const useFilters = () => {
   };
 
   const handleReset = () => {
-    dispatch(getAllPokemon());
+    dispatch(resetPokemon());
+    dispatch(resetFilters())
   };
 
   const [isOpen, setIsOpen] = useState({

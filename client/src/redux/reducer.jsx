@@ -12,17 +12,23 @@ import {
   POST_POKEMON,
   DELETE_POKEMON,
   UPDATE_POKEMON,
-  RESET_POKEMON,
-  SET_ACTIVE_FILTERS
+  SET_ACTIVE_FILTERS,
+  RESET_FILTERS,
+  RESET_POKEMON
 } from './actions';
 
 const initialState = {
   pokemon: [],
   allPokemon: [],
+  filteredPokemon: [],
   types: [],
   allTypes: [],
   detail: [],
-  activeFilter: []
+  activeFilter: {
+    order: null,
+    source: null,
+    type: null
+  }
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -50,40 +56,35 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case ORDER_POKEMON_BY_NAME:
-      const sortedPokemonName = [...state.allPokemon]; // Crear una copia de la lista de Pokémon
+      const sortedPokemonName = [...state.allPokemon];
       const orderName = action.payload === 'A-Z' 
-        ? sortedPokemonName.sort((a, b) => a.name.localeCompare(b.name)) // Orden ascendente
-        : sortedPokemonName.sort((a, b) => b.name.localeCompare(a.name)); // Orden descendente
+        ? sortedPokemonName.sort((a, b) => a.name.localeCompare(b.name)) 
+        : sortedPokemonName.sort((a, b) => b.name.localeCompare(a.name)); 
+
       return {
         ...state,
         allPokemon: orderName
       }
       
     case ORDER_POKEMON_BY_ATTACK:
-      const sortedPokemon = [...state.allPokemon]; // Crear una copia de la lista de Pokémon
-      const orderAttack = action.payload === 'worstAttack' 
-        ? sortedPokemon.sort((a, b) => a.attack - b.attack) // Orden ascendente
-        : sortedPokemon.sort((a, b) => b.attack - a.attack); // Orden descendente
+      const sortedPokemon = [...state.allPokemon]; 
+      const orderAttack = action.payload === 'Worst-attack' 
+        ? sortedPokemon.sort((a, b) => a.attack - b.attack) 
+        : sortedPokemon.sort((a, b) => b.attack - a.attack); 
+        
       return {
         ...state,
         allPokemon: orderAttack
       };
 
     case FILTER_POKEMON_BY_DB_OR_API:
-      const filterPokemonByDbOrApi = action.payload === 'db' ? state.pokemon.filter(el => el.createdInDB) : state.pokemon.filter(el => !el.createdInDB)
-      const resultfilterPokemonByDbOrApi = () => {
-        if (action.payload === 'allPokemon') { 
-          return state.pokemon
-        } else if (!filterPokemonByDbOrApi.length) {
-          notificationError('No pokemon in the DB yet :(')
-            return state.allPokemon
-          } else {
-              return filterPokemonByDbOrApi;
-            }
-      }
+      const filterPokemonByDbOrApi = action.payload === 'Custom'
+        ? state.pokemon.filter(el => el.createdInDB)
+        : state.pokemon.filter(el => !el.createdInDB);
+
       return {
         ...state,
-        allPokemon: resultfilterPokemonByDbOrApi()
+        allPokemon: filterPokemonByDbOrApi
       }
 
     case FILTER_POKEMON_BY_TYPE:
@@ -94,23 +95,23 @@ const rootReducer = (state = initialState, action) => {
           return typeDb.map(el => el.name).includes(action.payload)
         }
       })
+
       const filterTypeApi = allPokemonTypes.filter(el => {
         if(el.types) {
           const typeApi = el.types
           return typeApi.includes(action.payload)
         }
       })
+
       const allTypes = filterTypeApi.concat(filterTypeDb);
       const resultFilter = () => {  
-        if (action.payload === 'allTypes') { 
-          return allPokemonTypes 
-        } else if (!allTypes.length) {
+        if (!allTypes.length) {
           notificationError(`No pokemon of type "${action.payload}" try with another`)
             return state.allPokemon
           } else {
               return allTypes;
             }
-      }
+        }
       return {
         ...state,
         allPokemon: resultFilter()
@@ -137,17 +138,39 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       }
 
-    case SET_ACTIVE_FILTERS:
-      let activeFilters = [...state.activeFilter] // Crear una copia de la lista de Pokémon
-      if (activeFilters.includes(action.payload)) {
-        activeFilters = activeFilters.filter((filterType) => filterType !== action.payload);
-      } else {
-        activeFilters = [...activeFilters, action.payload];
+    case SET_ACTIVE_FILTERS:      
+      let activeFilters = state.activeFilter 
+
+      for (let key in activeFilters) {
+        if (key === action.filterType) {
+          if (activeFilters[key] === action.payload) {
+            activeFilters[key] = null
+          } else {
+            activeFilters[key] = action.payload
+          }
         }
+      }
   
       return {
         ...state,
         activeFilter: activeFilters
+      }
+
+    case RESET_FILTERS:      
+      let resetFilters = state.activeFilter 
+      for (let key in resetFilters) {
+        resetFilters[key] = null      
+    }
+  
+      return {
+        ...state,
+        activeFilter: resetFilters
+      }
+
+    case RESET_POKEMON:      
+      return {
+        ...state,
+        allPokemon: state.pokemon
       }
     
       default:

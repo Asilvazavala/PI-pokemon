@@ -6,17 +6,22 @@ export const ActiveFilters = () => {
 
   return (
     <main className={styles.main}>
-      { 
-        activeFilters.length > 0 &&
+      { Object.values(activeFilters).some(el => el !== null) &&
         <p>Active Filters:{' '}
           {
-            activeFilters.map((el, index) => {
-              return (
-                <span key={el}>
-                  {index > 0 && ', '}
-                  {index === activeFilters.length -1 ? `${el}.` : el} 
-                </span>
-              )
+            Object.entries(activeFilters).map(([key, value], index, arr) => {
+              if (value !== null) {
+                const isLastItem = index === arr.length - 1;
+                const separator = isLastItem ? '.' : ', ';
+                return (
+                  <span key={key}>
+                    {value}
+                    {separator}
+                  </span>
+                )
+              } else {
+                return null
+              }
             })
           }
         </p>

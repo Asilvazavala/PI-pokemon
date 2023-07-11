@@ -20,7 +20,6 @@ import {
 const initialState = {
   pokemon: [],
   allPokemon: [],
-  filteredPokemon: [],
   types: [],
   allTypes: [],
   detail: [],

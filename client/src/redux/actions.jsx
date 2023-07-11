@@ -43,41 +43,14 @@ export const searchPokemonByName = (search) => {
 };
 export const SEARCH_POKEMON_BY_NAME = 'SEARCH_POKEMON_BY_NAME';
 
-// ORDER POKEMON BY NAME--------------------------------------------------------------------------
-export const orderPokemonByName = (payload) => {
-  return {
-    type: 'ORDER_POKEMON_BY_NAME',
-    payload
-  }
-};
-export const ORDER_POKEMON_BY_NAME = 'ORDER_POKEMON_BY_NAME';
 
-// ORDER POKEMON BY ATTACK--------------------------------------------------------------------------
-export const orderPokemonByAttack = (payload) => {
+// FILTER POKEMON---------------------------------------------------------------------
+export const filterPokemon = () => {
   return {
-    type: 'ORDER_POKEMON_BY_ATTACK',
-    payload
+    type: 'FILTER_POKEMON',
   }
 };
-export const ORDER_POKEMON_BY_ATTACK = 'ORDER_POKEMON_BY_ATTACK';
-
-// FILTER POKEMON BY DB OR API---------------------------------------------------------------------
-export const filterPokemonByDbOrApi = (payload) => {
-  return {
-    type: 'FILTER_POKEMON_BY_DB_OR_API',
-    payload
-  }
-};
-export const FILTER_POKEMON_BY_DB_OR_API= 'FILTER_POKEMON_BY_DB_OR_API';
-
-// FILTER_POKEMON_BY_TYPE-------------------------------------------------------------------------
-export const filterPokemonByType = (payload) => {
-  return {
-    type: 'FILTER_POKEMON_BY_TYPE',
-    payload
-  }
-};
-export const FILTER_POKEMON_BY_TYPE= 'FILTER_POKEMON_BY_TYPE';
+export const FILTER_POKEMON= 'FILTER_POKEMON';
 
 // GET POKEMON DETAIL-----------------------------------------------------------------------------
 export const getPokemonDetail = (id) => {

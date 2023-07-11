@@ -4,9 +4,7 @@ import {
   GET_POKEMON,
   GET_TYPES,
   SEARCH_POKEMON_BY_NAME,
-  ORDER_POKEMON_BY_NAME,
-  ORDER_POKEMON_BY_ATTACK,
-  FILTER_POKEMON_BY_DB_OR_API,
+  FILTER_POKEMON,
   FILTER_POKEMON_BY_TYPE,
   GET_POKEMON_DETAIL,
   POST_POKEMON,
@@ -14,7 +12,7 @@ import {
   UPDATE_POKEMON,
   SET_ACTIVE_FILTERS,
   RESET_FILTERS,
-  RESET_POKEMON
+  RESET_POKEMON,
 } from './actions';
 
 const initialState = {
@@ -54,66 +52,60 @@ const rootReducer = (state = initialState, action) => {
         allPokemon: action.payload
       };
 
-    case ORDER_POKEMON_BY_NAME:
-      const sortedPokemonName = [...state.allPokemon];
-      const orderName = action.payload === 'A-Z' 
-        ? sortedPokemonName.sort((a, b) => a.name.localeCompare(b.name)) 
-        : sortedPokemonName.sort((a, b) => b.name.localeCompare(a.name)); 
+    case FILTER_POKEMON:
+      let filter = [...state.pokemon];
 
-      return {
-        ...state,
-        allPokemon: orderName
-      }
-      
-    case ORDER_POKEMON_BY_ATTACK:
-      const sortedPokemon = [...state.allPokemon]; 
-      const orderAttack = action.payload === 'Worst-attack' 
-        ? sortedPokemon.sort((a, b) => a.attack - b.attack) 
-        : sortedPokemon.sort((a, b) => b.attack - a.attack); 
-        
-      return {
-        ...state,
-        allPokemon: orderAttack
-      };
-
-    case FILTER_POKEMON_BY_DB_OR_API:
-      const filterPokemonByDbOrApi = action.payload === 'Custom'
-        ? state.pokemon.filter(el => el.createdInDB)
-        : state.pokemon.filter(el => !el.createdInDB);
-
-      return {
-        ...state,
-        allPokemon: filterPokemonByDbOrApi
+      if (state.activeFilter.source === 'Custom') {
+        filter = filter.filter(el => el.createdInDB);
       }
 
-    case FILTER_POKEMON_BY_TYPE:
-      const allPokemonTypes = state.pokemon
-      const filterTypeDb = allPokemonTypes.filter(el => {
-        if(el.createdInDB) {
-          let typeDb = el.types
-          return typeDb.map(el => el.name).includes(action.payload)
-        }
-      })
+      if (state.activeFilter.source === 'Api') {
+        filter = filter.filter(el => !el.createdInDB);
+      }
 
-      const filterTypeApi = allPokemonTypes.filter(el => {
-        if(el.types) {
-          const typeApi = el.types
-          return typeApi.includes(action.payload)
-        }
-      })
-
-      const allTypes = filterTypeApi.concat(filterTypeDb);
-      const resultFilter = () => {  
+      if(state.activeFilter.type !== null) {
+        const filterTypeDb = filter.filter(el => {
+          if(el.createdInDB) {
+            let typeDb = el.types
+            return typeDb.map(el => el.name).includes(state.activeFilter.type)
+          }
+        })
+  
+        const filterTypeApi = filter.filter(el => {
+          if(el.types) {
+            const typeApi = el.types
+            return typeApi.includes(state.activeFilter.type)
+          }
+        })
+  
+        const allTypes = filterTypeApi.concat(filterTypeDb);
         if (!allTypes.length) {
-          notificationError(`No pokemon of type "${action.payload}" try with another`)
-            return state.allPokemon
+          notificationError(`No pokemon of type "${state.activeFilter.type}" try with another`)
+            filter = state.allPokemon
           } else {
-              return allTypes;
+              filter = allTypes;
             }
-        }
+      }
+
+      if (state.activeFilter.order === 'A-Z') {
+        filter = filter.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      if (state.activeFilter.order === 'Z-A') {
+        filter = filter.sort((a, b) => b.name.localeCompare(a.name)); 
+      }
+
+      if (state.activeFilter.order === 'Worst-attack') {
+        filter = filter.sort((a, b) => a.attack - b.attack);
+      }
+
+      if (state.activeFilter.order === 'Most-attack') {
+        filter = filter.sort((a, b) => b.attack - a.attack); 
+      }
+
       return {
         ...state,
-        allPokemon: resultFilter()
+        allPokemon: filter
       }
 
     case GET_POKEMON_DETAIL:

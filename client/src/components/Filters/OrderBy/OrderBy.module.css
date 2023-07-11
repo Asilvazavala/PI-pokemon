@@ -72,7 +72,8 @@
 }
 
 .containerMain article span:hover {
-  background-color: var(--red);
+  background: #60212d;
+  backdrop-filter: blur(10px);
   color: var(--red-light);
   text-shadow: 0 0 10px var(--red-light);
 }

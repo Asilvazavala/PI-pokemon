@@ -4,11 +4,11 @@ import { useFunctions } from '../../../hooks/useFunctions';
 import { useNotification } from '../../../hooks/useNotification';
 
 export const CreateForm = ({ input, setInput, disabled }) => {
-  const { dispatch, history, id, getAllPokemon, postPokemon } = useFunctions();
+  const { dispatch, history, id, resetPokemon, postPokemon } = useFunctions();
   const { notificationSuccess } = useNotification();
 
   useEffect(() => {
-    dispatch(getAllPokemon());
+    dispatch(resetPokemon());
   },[dispatch])
 
   function handleSubmit(e) {

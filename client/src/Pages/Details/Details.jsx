@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getPokemonDetail, getAllPokemon } from '../../redux/actions';
+import { getPokemonDetail, resetPokemon } from '../../redux/actions';
 import styles from './Details.module.css';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { DetailsButtons } from './DetailsButtons/DetailsButtons';
@@ -12,7 +12,7 @@ export const Details = () => {
   useEffect(() => {
     if (id) {
       dispatch(getPokemonDetail(id));
-      dispatch(getAllPokemon());
+      dispatch(resetPokemon());
     }
   },[dispatch, id]);
 

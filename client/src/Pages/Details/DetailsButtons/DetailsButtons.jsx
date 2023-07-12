@@ -4,14 +4,14 @@ import { useFunctions } from '../../../hooks/useFunctions';
 import { useNotification } from '../../../hooks/useNotification';
 
 export const DetailsButtons = ({ pokemonDetail }) => {
-  const { history, dispatch, id, Link, getAllPokemon, deletePokemon } = useFunctions();
+  const { history, dispatch, id, Link, resetPokemon, deletePokemon } = useFunctions();
   const { notificationSuccess } = useNotification();
 
   const handleDelete = () => {
     dispatch(deletePokemon(id));
     pokemonDetail.length = 0;
     notificationSuccess('Pokemon deleted sucessfully!!');
-    dispatch(getAllPokemon());
+    dispatch(resetPokemon());
     history('/home');
   }
 

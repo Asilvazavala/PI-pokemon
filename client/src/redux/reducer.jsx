@@ -5,7 +5,6 @@ import {
   GET_TYPES,
   SEARCH_POKEMON_BY_NAME,
   FILTER_POKEMON,
-  FILTER_POKEMON_BY_TYPE,
   GET_POKEMON_DETAIL,
   POST_POKEMON,
   DELETE_POKEMON,
@@ -95,12 +94,12 @@ const rootReducer = (state = initialState, action) => {
         filter = filter.sort((a, b) => b.name.localeCompare(a.name)); 
       }
 
-      if (state.activeFilter.order === 'Worst-attack') {
-        filter = filter.sort((a, b) => a.attack - b.attack);
+      if (state.activeFilter.order === 'Number Asc') {
+        filter = filter.sort((a, b) => a.id - b.id);
       }
 
-      if (state.activeFilter.order === 'Most-attack') {
-        filter = filter.sort((a, b) => b.attack - a.attack); 
+      if (state.activeFilter.order === 'Number Des') {
+        filter = filter.sort((a, b) => b.id - a.id); 
       }
 
       return {

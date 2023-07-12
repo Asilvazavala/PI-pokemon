@@ -4,14 +4,14 @@ import { useFunctions } from '../../../hooks/useFunctions';
 import { useNotification } from '../../../hooks/useNotification';
 
 export const UpdateForm = ({ input, setInput, disabled }) => {
-  const { dispatch, history, id, useSelector, getAllPokemon, getPokemonDetail, updatePokemon } = useFunctions();
+  const { dispatch, history, id, useSelector, resetPokemon, getPokemonDetail, updatePokemon } = useFunctions();
   const { notificationSuccess } = useNotification();
   const detail = useSelector((state) => state.detail);  
 
   useEffect(() => {
     if (id) { 
       dispatch(getPokemonDetail(id)) 
-      dispatch(getAllPokemon());
+      dispatch(resetPokemon());
     }
   },[id])
 
@@ -52,7 +52,7 @@ export const UpdateForm = ({ input, setInput, disabled }) => {
       height: '',
       weight: '',
     })
-    dispatch(getAllPokemon());
+    dispatch(resetPokemon());
     history('/home');
   };
 

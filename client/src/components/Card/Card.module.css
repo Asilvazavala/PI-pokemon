@@ -1,4 +1,27 @@
 /* General*/
+.Fire {
+  color: orange;
+}
+
+.Grass {
+  color: green;
+}
+
+.Poison {
+  color: purple;
+}
+
+.Water {
+  color:darkblue;
+}
+
+.Fighting {
+  color: #ec9c9c;
+}
+
+.Normal {
+  color: red;
+}
 
 .textBig {
   font-size: 25px;
@@ -10,12 +33,10 @@
 
 .textMedium {
   font-size: 20px;
-  color: #45020fb1;
   text-align: center;
   display: block;
   font-weight: 400;
 }
-
 
 .imgCenter {
   display: block;

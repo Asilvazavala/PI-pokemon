@@ -4,7 +4,7 @@ import { useFilters } from '../../../hooks/useFilters';
 export const OrderBy = () => {
   const { 
     handleOrderPokemonByName, 
-    handleOrderPokemonByAttack,
+    handleOrderPokemonByNumber,
     handleFilterPokemonByDbOrApi, 
     handleFilterPokemonByType,
     handleReset,
@@ -30,8 +30,8 @@ export const OrderBy = () => {
           <ul onClick={() => toggleMenu('orderBy')}>
             <li id='A-Z' onClick={(e) => (handleOrderPokemonByName(e))}>A-Z</li>
             <li id='Z-A' onClick={(e) => (handleOrderPokemonByName(e))}>Z-A</li>
-            <li id='Most-attack' onClick={(e) => (handleOrderPokemonByAttack(e))}>Most attack</li>
-            <li id='Worst-attack' onClick={(e) => (handleOrderPokemonByAttack(e))}>Worst attack</li>
+            <li id='Number Asc' onClick={(e) => (handleOrderPokemonByNumber(e))}>Number Asc</li>
+            <li id='Number Des' onClick={(e) => (handleOrderPokemonByNumber(e))}>Number Des</li>
           </ul>
         )}
       </span>

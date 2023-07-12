@@ -63,7 +63,7 @@ export const useFilters = () => {
     toggleMenu('orderBy')
   };
 
-  const handleOrderPokemonByAttack = (e) => {
+  const handleOrderPokemonByNumber = (e) => {
     dispatch(setActiveFilters(e.target.id, 'order'));
     dispatch(filterPokemon());
     e.preventDefault();
@@ -115,7 +115,7 @@ export const useFilters = () => {
 
   return { 
     handleOrderPokemonByName, 
-    handleOrderPokemonByAttack, 
+    handleOrderPokemonByNumber, 
     handleFilterPokemonByDbOrApi, 
     handleFilterPokemonByType,
     handleReset,

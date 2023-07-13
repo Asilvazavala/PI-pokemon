@@ -2,6 +2,39 @@
   display: none;
 }
 
-.containerPaginate nav li button {
-  color: #f0002c !important;
+.containerMain {
+  display: flex;
+  justify-content: center;
 }
+
+.containerPagination {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  list-style: none;
+  column-gap: .6rem;
+}
+
+.PreviousPage,
+.NextPage,
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .2rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  transition-property: background-color, color;
+  width: 2rem;
+}
+
+.NextPage i,
+.PreviousPage i {
+  font-size: 1.5rem;
+}
+
+.pageActive {
+  background-color: var(--red);
+  color: var(--red-light);
+}
+

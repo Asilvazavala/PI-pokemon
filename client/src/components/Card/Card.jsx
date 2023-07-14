@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import styles from './Card.module.css';
 import { usePaginate } from '../../hooks/usePaginate'
 import { useFunctions } from '../../hooks/useFunctions'
@@ -18,8 +18,8 @@ export const Card = () => {
     <main>
       <ul className={styles.cardContainer}>
       {
-        currentPokemon.length > 0 ? 
-        currentPokemon.map((el) => {
+        currentPokemon.length > 0 
+        ? currentPokemon.map((el) => {
           const typeClassesDB = el.types.map((type) => [type.name])
           const typeClassesApi = el.types.map(el=> [el])
           return ( 

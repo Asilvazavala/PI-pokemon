@@ -186,25 +186,45 @@
     justify-content: center;
     padding: 0;
   }
+
+  .homeContent {
+    max-width: 90vw;
+  }
   
   .homeContent h3,
   .homeContent h1 {
     text-align: center;
+  }
+
+  .homeContent h1 {
+    font-size: 3.5rem;
+  }
+
+  .homeContent h3 {
+    font-size: 2.7rem;
+  }
+
+  .homeContent .btnBox button {
+    font-size: 2rem;
   }
 }
 
 
 @media only screen and (max-width: 380px) {
   .homeContent h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 
   .homeContent h3 {
-    font-size: 1.7rem;
+    font-size: 2rem;
   }
 
   .homeContent .btnBox button {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
+  }
+
+  .homeSci {
+    bottom: 20px;
   }
 
 }

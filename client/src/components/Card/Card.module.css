@@ -190,7 +190,7 @@
   }
 }
 
-@media only screen and (max-width: 470px) {
+@media only screen and (max-width: 490px) {
   .cardContainer {
     column-gap: 1.5rem;
     row-gap: 2rem;
@@ -217,7 +217,7 @@
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 390px) {
   .card {
     max-width: 150px;
   }
@@ -226,5 +226,17 @@
     max-width: 150px;
     max-height: 150px;
     height: 150px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .card {
+    max-width: 130px;
+  }
+
+  .imgCard {
+    max-width: 130px;
+    max-height: 130px;
+    height: 130px;
   }
 }

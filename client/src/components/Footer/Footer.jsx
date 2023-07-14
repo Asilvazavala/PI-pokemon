@@ -3,11 +3,10 @@ import { usePaginate } from '../../hooks/usePaginate';
 import { useFunctions } from '../../hooks/useFunctions';
 
 export const Footer = () => {
-  const { currentPokemon } = usePaginate();
   const { Link } = useFunctions();
   
   return (
-    <div className={currentPokemon.length > 0 ? styles.main : styles.hideFooter}>
+    <div>
     
     <footer className="seccion-oscura d-flex flex-column align-items-center justify-content-center">
       <div className={styles.containerFooterIcons}>

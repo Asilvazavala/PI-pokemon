@@ -1,0 +1,13 @@
+@media (max-width: 1250px) {
+  .prevNext {
+    width: 80vw;
+  }
+
+  .content {
+    width: 80vw;
+  }
+
+  .title {
+    width: 40vw;
+  }
+}

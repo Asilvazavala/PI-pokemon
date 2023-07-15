@@ -8,5 +8,11 @@ export const useFunctions = () => {
   const { id } = useParams();
   const location = useLocation();
 
-  return { dispatch, searchPokemonByName, getAllPokemon, deletePokemon, getPokemonDetail, updatePokemon, postPokemon, resetPokemon, Link, history, id, useSelector, location, NavLink }
+  const goTop = () => {
+    window.scrollTo({
+      top: 0
+    })
+  }
+
+  return { dispatch, goTop, searchPokemonByName, getAllPokemon, deletePokemon, getPokemonDetail, updatePokemon, postPokemon, resetPokemon, Link, history, id, useSelector, location, NavLink }
 }

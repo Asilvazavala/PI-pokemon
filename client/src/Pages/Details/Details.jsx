@@ -1,54 +1,127 @@
 import { useEffect } from 'react';
-import { getPokemonDetail, resetPokemon } from '../../redux/actions';
 import styles from './Details.module.css';
 import { NavBar } from '../../components/NavBar/NavBar';
+import { Footer } from '../../components/Footer/Footer';
 import { DetailsButtons } from './DetailsButtons/DetailsButtons';
-import { useFunctions } from '../../hooks/useFunctions';
+import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
+import { SkeletonLoaderDetails } from '../../components/SkeletonLoader/SkeletonLoaderDetails';
+import { useDetails } from '../../hooks/useDetails';
 
 export const Details = () => {
-  const { dispatch, id, useSelector } = useFunctions();
-  const pokemonDetail = useSelector((state) => state.detail)
+  const { 
+    typeClassesApi, 
+    typeClassesDB,
+    nextPokemon,
+    findNext,
+    prevPokemon,
+    findPrev,
+    Link,
+    handleGoHome,
+    handleNextPokemon,
+    handlePrevPokemon,
+    id,
+    dispatch,
+    getPokemonDetail,
+    pokemonDetail,
+    setNextPokemon,
+    setPrevPokemon
+  } = useDetails()
 
   useEffect(() => {
     if (id) {
       dispatch(getPokemonDetail(id));
-      dispatch(resetPokemon());
     }
+    setNextPokemon(parseInt(id) + 1)
+    setPrevPokemon(parseInt(id) - 1)
   },[dispatch, id]);
 
   return (
-    <main className={styles.containerDetails}>
+    <main className={styles.mainContainer}>
      <NavBar /> 
+
      { 
         pokemonDetail.length > 0 
           ?
-          <section className={pokemonDetail.length > 0 ? styles.cardContainer : styles.hideDetails}>
-            <picture>
-              <img 
-                className={styles.imgCenter}
-                src = {pokemonDetail[0].img ? pokemonDetail[0].img : pokemonDetail[0].image} 
-                alt = {pokemonDetail[0].name}
-                width = '200px'
-                height = '200px' 
-              />
-            </picture>
+          <section className={styles.detailsContainer}>
+            <div className={styles.prevNextPokemon}>
+              <article className={styles.prevPokemon} onClick={handlePrevPokemon}>
+                <Link to= {`/details/${prevPokemon < 1 ? 40 : prevPokemon}`}>
+                  <i className='bx bx-left-arrow-circle'></i>
+                </Link>
+                <p className={styles.id}>N.° {findPrev?.id}</p>
+                <p className={styles.name}>{findPrev?.name}</p>
+              </article>
 
-            <section>
-              <h1 className={styles.textBig}>{pokemonDetail[0].name}</h1>
-              <h2 className={styles.textMedium}> Type(s): {!pokemonDetail[0].createdInDB ? pokemonDetail[0].types + ' ' : `${pokemonDetail[0].types.map(el => el.name)}`}</h2>
-              <h3 className={styles.textSmall}> Attack: {pokemonDetail[0].attack}</h3>
-              <h2 className={styles.textMedium}> Defense: {pokemonDetail[0].defense}</h2>
-              <h3 className={styles.textSmall}> Height: {pokemonDetail[0].height}</h3>
-              <h2 className={styles.textMedium}> Hp: {pokemonDetail[0].hp}</h2>
-              <h3 className={styles.textSmall}> Speed: {pokemonDetail[0].speed}</h3>
-              <h2 className={styles.textMedium}> Weight: {pokemonDetail[0].weight}</h2>
-              <h3 className={styles.textSmall}> Number: {pokemonDetail[0].id}</h3>
-            </section>
+              <article className={styles.nextPokemon} onClick={handleNextPokemon}>
+                <p className={styles.name}>{findNext?.name}</p>
+                <p className={styles.id}>N.° {findNext?.id}</p>
+                <Link to= {`/details/${nextPokemon > 40 ? 1 : nextPokemon}`}>
+                  <i className='bx bx-right-arrow-circle'></i>
+                </Link>
+              </article>
+            </div>
+
+
+            <header>
+              <div>
+                <p>{pokemonDetail[0].name}</p>
+                <span>N.° {pokemonDetail[0].id}</span>
+              </div>
+
+              <div>
+                <button onClick={handleGoHome}><i className='bx bx-home'></i></button>
+              </div>
+            </header>
+
+            <footer>
+              <picture>
+                <img 
+                  src = {pokemonDetail[0].img ? pokemonDetail[0].img : pokemonDetail[0].image} 
+                  alt = {pokemonDetail[0].name}
+                />
+              </picture>
+
+              <aside className={styles.textTypeContainer}>
+                <main className={styles.textContainer}>
+                  <section>
+                    <ProgressBar value={pokemonDetail[0].attack} nameVal='Attack' />
+                    <ProgressBar value={pokemonDetail[0].defense} nameVal='Defense' />
+                    <ProgressBar value={pokemonDetail[0].height} nameVal='Height' />
+                  </section>
+
+                  <section>
+                    <ProgressBar value={pokemonDetail[0].hp} nameVal='Hp' />
+                    <ProgressBar value={pokemonDetail[0].speed} nameVal='Speed' />
+                    <ProgressBar value={pokemonDetail[0].weight} nameVal='Weight' />
+                  </section>
+                </main>
+
+                <section className={styles.types}>
+                  <h2>Types</h2>
+                  <footer>
+                    {
+                      !pokemonDetail[0].createdInDB 
+                      ? typeClassesApi.map((type, index) => (
+                            <span key={index} className={`${styles[type]} ${styles.typesCard}`}>
+                              {type}
+                            </span>
+                          ))
+                      : typeClassesDB.map((type, index) => (
+                          <span key={index} className={`${styles[type]} ${styles.typesCard}`}>
+                            {type}
+                          </span>
+                        ))
+                    }
+                  </footer>
+                </section>
+              </aside>
+            </footer>
           </section> 
-          : 
-          <aside className={styles.containerLoader}><span className={styles.loader}></span></aside>
+          : <SkeletonLoaderDetails />
      }
-      <DetailsButtons pokemonDetail={pokemonDetail} />
+
+      {/* <DetailsButtons pokemonDetail={pokemonDetail} /> */}
+      <Footer />
     </main>
   )
 }

@@ -6,7 +6,7 @@ import { SkeletonLoader } from '../SkeletonLoader/SkeletonLoader';
 
 export const Card = () => {
   const { currentPokemon } = usePaginate();
-  const { dispatch, getAllPokemon, Link } = useFunctions();
+  const { dispatch, getAllPokemon, Link, goTop } = useFunctions();
 
   useEffect(() => {    
     if (currentPokemon.length === 0) {
@@ -25,7 +25,7 @@ export const Card = () => {
           return ( 
           <section key = {el.id} >
             <li className={styles.card}>          
-              <Link className={styles.Link} to= {`/details/${el.id}`}>
+              <Link className={styles.Link} onClick={goTop} to= {`/details/${el.id}`}>
                 <img 
                   className={styles.imgCard} 
                   src={el.image} 

@@ -1,44 +1,35 @@
-/* General */
-
-.hideFooter {
-  display: none;
+.containerFooter {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 100px 0 0 0;
+  background: var(--red);
+  color: var(--white);
+  padding: 50px 0;
 }
 
-.main {
-  padding-bottom: 20px;
+.textFooter {
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* Footer */
-
-.containerFooterIcons {
-  font-size: 2rem;
+.iconsFooter {
+  display: flex;
+  column-gap: 1.5rem;
 }
 
-.containerFooterIcons a {
-  padding: 3px;
-  margin: 10px;
-  border-radius: 50%;
-  transition: all 0.5s ease-in;
-}
-
-.containerFooterIcons i {
-  color: #f0002c;
-  font-size: 1.8rem;
-  transition: all 0.5s ease-in;
-}
-
-.containerFooterIcons a:hover i {
-  color: black;
+.iconsFooter a i {
+  color: var(--white);
   font-size: 2.2rem;
+  transition: 0.3s ease-in-out;
+  transition-property: color, transform;
 }
 
-.containerFooterIcons {
-  font-size: 18px;
-  font-weight: bolder;
-  padding: 10px ;
-}
-
-.footerDerechosAutor {
-  font-weight: bolder;
-  font-size: 18px;
+.iconsFooter a i:hover {
+  color: var(--red-light);
+  transform: scale(1.3);
 }

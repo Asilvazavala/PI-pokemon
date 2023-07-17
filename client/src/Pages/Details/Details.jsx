@@ -23,16 +23,12 @@ export const Details = () => {
     dispatch,
     getPokemonDetail,
     pokemonDetail,
-    setNextPokemon,
-    setPrevPokemon
   } = useDetails()
 
   useEffect(() => {
     if (id) {
       dispatch(getPokemonDetail(id));
     }
-    setNextPokemon(parseInt(id) + 1)
-    setPrevPokemon(parseInt(id) - 1)
   },[dispatch, id]);
 
   return (
@@ -43,7 +39,7 @@ export const Details = () => {
         pokemonDetail.length > 0 
           ?
           <section className={styles.detailsContainer}>
-            <div className={styles.prevNextPokemon}>
+            {/* <div className={styles.prevNextPokemon}>
               <article className={styles.prevPokemon} onClick={handlePrevPokemon}>
                 <Link to= {`/details/${prevPokemon < 1 ? 40 : prevPokemon}`}>
                   <i className='bx bx-left-arrow-circle'></i>
@@ -59,7 +55,7 @@ export const Details = () => {
                   <i className='bx bx-right-arrow-circle'></i>
                 </Link>
               </article>
-            </div>
+            </div> */}
 
 
             <header>

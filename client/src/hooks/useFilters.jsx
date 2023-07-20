@@ -27,6 +27,7 @@ export const useFilters = () => {
 
   useEffect(() => {
     dispatch(getAllTypes());
+    handleReset();
 
     const handleClickOutside = (event) => {
       if (

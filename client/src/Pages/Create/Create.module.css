@@ -1,4 +1,144 @@
-.containerCreate {
-  background-image: url('../../images/Gengar.jpg');
-  background-size: 100% 100%;
+.mainContainer {
+  background-size: cover; 
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column;
+  align-items: start; 
+  background-image: url(../../images/Gengar.jpg);
 }
+
+.mainContainer .title {
+  color: var(--red-light);
+  font-weight: bolder;
+  margin: 0 0 30px 0;
+  font-size: 1.8rem;
+}
+
+.mainContainer .form {
+  margin: 100px 30px 30px 30px;
+  max-width: 50vw;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: 10px;
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.twoInputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputImage,
+.inputTypes {
+  display: flex;
+  flex-direction: column;
+  margin: 1.2rem 0;
+}
+
+.inputTypes .allTypes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-top: .4rem;
+}
+
+.inputTypes .allTypes span {
+  outline: .1rem solid var(--white);
+  padding: .2rem .8rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  color: var(--white);
+  transition: 0.3s ease-in-out;
+  transition-property: outline, color;
+}
+
+.imageForm span:hover,
+.inputTypes .allTypes span:hover {
+  outline: .1rem solid var(--red-light) !important;
+  color: var(--red-light) !important;
+}
+
+.label {
+  border-bottom: 1px solid var(--red-light);
+  color: var(--red-light);
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: .8rem;
+}
+
+.buttonCreate {
+  width: 100%;
+  cursor: pointer;
+  height: 3rem;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  border-radius: .3rem;
+}
+
+/* Input image */
+.inputImage img {
+  width: 10rem;
+  height: 10rem;
+  margin-top: .7rem;
+  object-fit: cover;
+  border-radius: .3rem;
+  background: var(--white);
+}
+
+.inputImage p {
+  color: var(--white);
+}
+
+.fileInputImage {
+  display: none;
+}
+
+.imageForm span {
+  color: var(--white);
+  width: 100%;
+  padding: .2rem .8rem;
+  outline: .1rem solid var(--white);
+  border-radius: .5rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  transition-property: outline, color;
+}
+
+.imageForm,
+.invalidInput,
+.validInput {
+  padding: 4px 0;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  border-radius: .2rem;
+  border: none;
+  outline: none;
+  margin: .3rem 0;
+}
+
+/* Valid Feedback */
+.invalidFeedback {
+  color: red;
+  margin-top: .5rem;
+}
+
+.validFeedback {
+  color: rgb(116, 255, 116);
+}
+
+@media only screen and (max-width: 1000px) { 
+  .mainContainer .form {
+    margin: 100px 10px 30px 10px;
+    max-width: 90vw;
+    padding: 1rem;
+  }
+
+  .twoInputs {
+   display: block;
+   max-width: 90vw;
+  }
+}
+
+

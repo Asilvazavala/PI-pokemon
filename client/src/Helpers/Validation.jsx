@@ -28,16 +28,6 @@ export const Validation = (input) => {
     err.name = 'Name must start with capital letter';
     }
 
-  // Validation Input Image
-  if (!input.image.length) {
-    err.image = 'Select a valid image';
-  } 
-
-  // Validation Input Types
-  if (!input.types.length) {
-    err.types = 'Select a valid type';
-  } 
-
   // Validation Input attack 
   if (!input.attack) {
       err.attack = 'Type a valid number';
@@ -66,19 +56,24 @@ export const Validation = (input) => {
       err.speed = 'Value must be between 1-100';
     }
 
-  // Validation Input weight 
-  if (!input.weight) {
-      err.weight = 'Type a valid number';
-  } else if (!valRegExp.test(input.weight)) {
-      err.weight = 'Value must be between 1-100';
-    }
-
   // Validation Input height 
   if (!input.height) {
       err.height = 'Type a valid number';
   } else if (!valRegExp.test(input.height)) {
       err.height = 'Value must be between 1-100';
     }
+  
+  // Validation Input weight 
+  if (!input.weight) {
+    err.weight = 'Type a valid number';
+  } else if (!valRegExp.test(input.weight)) {
+    err.weight = 'Value must be between 1-100';
+    }
+
+  // Validation Input Types
+  if (!input.types.length) {
+    err.types = 'Select a valid type';
+  } 
 
 
   return err;

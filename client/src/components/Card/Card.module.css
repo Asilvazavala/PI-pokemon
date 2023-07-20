@@ -102,7 +102,7 @@
 
 .imgCard {
   background-color: var(--red);
-  max-width: 250px;
+  width: 250px;
   max-height: 250px;
   height: 250px;
   border-radius: .8rem .8rem 0 0;
@@ -188,6 +188,15 @@
     max-height: 210px;
     height: 210px;
   }
+
+  .typesContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .typesCard {
+    margin-top: 5px;
+  }
 }
 
 @media only screen and (max-width: 490px) {
@@ -201,19 +210,19 @@
     height: 100%;
   }
 
-  .typesContainer {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .typesCard {
-    margin-top: 5px;
-  }
-
   .imgCard {
     max-width: 170px;
     max-height: 170px;
     height: 170px;
+  }
+
+  .fullInfo {
+    height: 10rem;
+    text-align: center;
+  }
+  
+  .fullInfo svg {
+    height: 3rem;
   }
 }
 

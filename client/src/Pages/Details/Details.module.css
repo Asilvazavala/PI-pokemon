@@ -69,6 +69,10 @@
   align-items: center;
 }
 
+.detailsContainer .types article {
+  margin-top: .5rem;
+}
+
 /* Prev Next Pokemon */
 .mainContainer .prevNextPokemon {
   display: flex;
@@ -130,6 +134,10 @@
 }
 
 /* Details */
+.hide {
+  display: none;
+}
+
 .mainContainer {
   margin: 100px 0;
 }
@@ -146,7 +154,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  width: 89vw;
+  width: 88vw;
 }
 
 .detailsContainer header div {
@@ -155,6 +163,7 @@
 
 .detailsContainer header div button {
   cursor: pointer;
+  border-radius: .3rem;
 }
 
 .detailsContainer header div i {
@@ -180,15 +189,32 @@
 .detailsContainer footer {
   display: flex;
   max-height: 65vh;
+  position: relative;
 }
 
 .detailsContainer footer picture img {
-  max-width: 50vw;
+  width: 30vw;
   height: 65vh;
-  object-fit: cover;
   background: rgba(255, 255, 255, 0.1);
+  object-fit: cover;
   border-top-left-radius: .7rem;
   border-bottom-left-radius: .7rem;
+}
+
+.buttonsContainer {
+  margin-bottom: .7rem;
+  width: 30vw;
+}
+
+.buttonsContainer .btnDelete {
+  margin-right: 10%;
+}
+
+.buttonsContainer .btnUpdate,
+.buttonsContainer .btnDelete {
+  border-radius: .3rem;
+  cursor: pointer;
+  width: 45%;
 }
 
 /* Stats */
@@ -215,5 +241,75 @@
 
 .detailsContainer main {
   font-size: 1.6rem;
+}
+
+@media only screen and (max-width: 900px) {
+  .mainContainer .detailsContainer footer {
+    flex-direction: column;
+  }
+
+  .detailsContainer footer picture img {
+    width: 88vw;
+    height: 30vh;
+    object-fit: contain;
+    border-top-right-radius: .7rem;
+    border-bottom-left-radius: 0;
+  }
+
+  .detailsContainer .textTypeContainer {
+    width: 83vw;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: .7rem;  
+  }
+
+  .buttonsContainer {
+    width: 88vw;
+    margin: .5rem 0 1rem 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .detailsContainer header span,
+  .detailsContainer header p {
+    font-size: 2.2rem;
+  }
+
+  .detailsContainer {
+    margin: 0 .9rem;
+    max-height: 100vh;
+  }
+  
+  .detailsContainer .textTypeContainer {
+    max-width: 78vw;
+  }
+
+  .detailsContainer header p {
+    margin-right: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .detailsContainer {
+    margin-bottom: 10rem;
+  }
+
+  .detailsContainer header span,
+  .detailsContainer header p {
+    font-size: 1.9rem;
+  }
+
+  .detailsContainer header div i {
+    font-size: 1.6rem;
+  }  
+
+  .detailsContainer .textTypeContainer {
+    max-width: 77vw;
+  }
+}
+
+@media only screen and (max-width: 350px) { 
+  .detailsContainer .textTypeContainer {
+    max-width: 76vw;
+  }
 }
 

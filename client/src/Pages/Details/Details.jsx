@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import styles from './Details.module.css';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { Footer } from '../../components/Footer/Footer';
-import { DetailsButtons } from './DetailsButtons/DetailsButtons';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 import { SkeletonLoaderDetails } from '../../components/SkeletonLoader/SkeletonLoaderDetails';
 import { useDetails } from '../../hooks/useDetails';
+import { Modal } from '../../components/Modal/Modal';
 
 export const Details = () => {
   const { 
@@ -23,6 +23,9 @@ export const Details = () => {
     dispatch,
     getPokemonDetail,
     pokemonDetail,
+    showModal,
+    setShowModal,
+    handleDelete
   } = useDetails()
 
   useEffect(() => {
@@ -61,13 +64,36 @@ export const Details = () => {
             <header>
               <div>
                 <p>{pokemonDetail[0].name}</p>
-                <span>N.° {pokemonDetail[0].id}</span>
+                <span>{pokemonDetail[0].id.length > 10 ? '' : `N.° ${pokemonDetail[0].id}`}</span>
               </div>
 
               <div>
                 <button onClick={handleGoHome}><i className='bx bx-home'></i></button>
               </div>
             </header>
+
+            <section className={id.length > 8 ? styles.buttonsContainer : styles.hide}>
+              <button
+                className={styles.btnDelete}
+                onClick={() => setShowModal(true)}>Delete
+              </button>
+              <Link to = {`/create/${id}`}>
+                <button 
+                  className={styles.btnUpdate}
+                >Update
+                </button>
+              </Link>
+              {
+                showModal && <Modal  
+                setShowModal={setShowModal}
+                titulo='Are you sure?' 
+                mensaje={`This action DELETE pokemon "${pokemonDetail[0].name}"`} 
+                textButton1='Accept' 
+                textButton2='Cancel' 
+                handleFunction={handleDelete}
+                />
+              }
+            </section>
 
             <footer>
               <picture>
@@ -94,7 +120,7 @@ export const Details = () => {
 
                 <section className={styles.types}>
                   <h2>Types</h2>
-                  <footer>
+                  <article>
                     {
                       !pokemonDetail[0].createdInDB 
                       ? typeClassesApi.map((type, index) => (
@@ -108,15 +134,13 @@ export const Details = () => {
                           </span>
                         ))
                     }
-                  </footer>
+                  </article>
                 </section>
               </aside>
             </footer>
           </section> 
           : <SkeletonLoaderDetails />
      }
-
-      {/* <DetailsButtons pokemonDetail={pokemonDetail} /> */}
       <Footer />
     </main>
   )

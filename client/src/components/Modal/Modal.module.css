@@ -1,3 +1,96 @@
-.containerModal {
-  background-color: rgb(111, 29, 29);
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
 }
+
+.modalContainer {
+  width: 500px;
+  height: 300px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
+  /* box-shadow: rgba(0,0,0,0.35) 0px 5px 15px; */
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modalContainer .title {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.4rem;
+  color: black;
+}
+
+.titleCloseButton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titleCloseButton i {
+  background-color: transparent;
+  color: black;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  transition: .3s ease all;
+}
+
+.titleCloseButton i:hover {
+  color: #9d2c3d;
+}
+
+.modalContainer .body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  text-align: center;
+  color: black;
+}
+
+.modalContainer .footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer .footer span {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: .3s ease;
+  transition-property: transform, background-color;
+}
+
+.modalContainer .footer span:hover {
+  transform: scale(1.1);
+}
+
+.modalContainer .fisrtButton {
+  background-color: crimson;
+}
+
+.modalContainer .secondButton {
+  background-color: royalblue;
+}
+

@@ -1,0 +1,38 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 1rem 0;
+}
+
+.label {
+  color: var(--red-light);
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.invalidInput,
+.validInput {
+  padding: 4px 6px;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  border-radius: .2rem;
+  border: none;
+  outline: none;
+  margin: .3rem 0;
+}
+
+.invalidInput {
+  outline: solid .08rem red;
+}
+
+.validInput {
+  outline: solid .08rem rgb(116, 255, 116);
+}
+
+.invalidFeedback {
+  color: red;
+}
+
+.validFeedback {
+  color: rgb(116, 255, 116);
+}

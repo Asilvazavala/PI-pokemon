@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import styles from './Card.module.css';
+import colorType from '../../Helpers/ColorTypes.module.css';
 import { usePaginate } from '../../hooks/usePaginate'
 import { useFunctions } from '../../hooks/useFunctions'
 import { SkeletonLoader } from '../SkeletonLoader/SkeletonLoader';
@@ -12,7 +13,7 @@ export const Card = () => {
     if (currentPokemon.length === 0) {
       dispatch(getAllPokemon());
     }
-  },[])  
+  },[currentPokemon])  
 
   return (
     <main>
@@ -45,12 +46,12 @@ export const Card = () => {
                 <section className={styles.typesContainer}> 
                   {!el.createdInDB 
                     ? typeClassesApi.map((type, index) => (
-                        <span key={index} className={`${styles[type]} ${styles.typesCard}`}>
+                        <span key={index} className={`${colorType[type]} ${styles.typesCard}`}>
                           {type}
                         </span>
                       ))
                     : typeClassesDB.map((type, index) => (
-                        <span key={index} className={`${styles[type]} ${styles.typesCard}`}>
+                        <span key={index} className={`${colorType[type]} ${styles.typesCard}`}>
                           {type}
                         </span>
                       ))

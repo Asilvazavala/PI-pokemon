@@ -8,17 +8,17 @@ export const Landing = () => {
     <main className={styles.containerLanding}>
        <section className={styles.home}>
          <header className={styles.homeContent}>
-          <h1>Welcome Pokefan</h1>
+          <h1>Welcome POKEFAN</h1>
           <h3>Catch ´em all</h3>
           <aside className={styles.btnBox}>
             <Link className={styles.Link} to='/home'>
-              <button>Let´s go</button>
+              <button>LET´S GO</button>
             </Link>
           </aside>
         </header>
 
         <footer className={styles.homeSci}>
-          <a target="_blank" rel="noopener noreferrer" href="/contact"><i className='bx bx-envelope'></i></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://antonio-silva-portfolio.onrender.com/"><i className='bx bxs-briefcase'></i></a>
           <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/antonio-silva-developer/"><i className='bx bxl-linkedin'></i></a>
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/Asilvazavala?tab=repositories"><i className='bx bxl-github'></i></a>
         </footer>

@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react'
 
 export const useFilters = () => {
   const { dispatch, useSelector } = useFunctions();
-  const { setOrden, setCurrentPage } = usePaginate();
+  const { setCurrentPage, currentPokemon } = usePaginate();
 
   const [selectedType, setSelectedType] = useState(null);
   
@@ -26,7 +26,9 @@ export const useFilters = () => {
   const selectSourceRef = useRef(null);
 
   useEffect(() => {
-    dispatch(getAllTypes());
+    if (currentPokemon.length < 1) {
+      dispatch(getAllTypes());
+    }
     handleReset();
 
     const handleClickOutside = (event) => {
@@ -53,13 +55,12 @@ export const useFilters = () => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  },[dispatch])
+  },[])
 
   const handleOrderPokemonByName = (e) => {
     dispatch(setActiveFilters(e.target.id, 'order'));
     dispatch(filterPokemon());
     e.preventDefault();
-    setOrden(`Ordenado ${e.target.id}`);
     setCurrentPage(1);
     toggleMenu('orderBy')
   };
@@ -68,7 +69,6 @@ export const useFilters = () => {
     dispatch(setActiveFilters(e.target.id, 'order'));
     dispatch(filterPokemon());
     e.preventDefault();
-    setOrden(`Ordenado ${e.target.id}`);
     setCurrentPage(1);
     toggleMenu('orderBy');
   };
@@ -77,7 +77,6 @@ export const useFilters = () => {
     dispatch(setActiveFilters(e.target.id, 'source'));
     dispatch(filterPokemon());
     e.preventDefault();
-    setOrden(`Ordenado ${e.target.id}`);
     setCurrentPage(1);
     toggleMenu('selectSource');
   };

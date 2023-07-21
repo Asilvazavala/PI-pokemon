@@ -23,9 +23,8 @@ export const Create = () => {
   useEffect(() => {
     if (id) { 
       dispatch(getPokemonDetail(id)) 
+      dispatch(getAllTypes());
     }
-    dispatch(resetPokemon());
-    dispatch(getAllTypes());
   },[id])
   
   return (

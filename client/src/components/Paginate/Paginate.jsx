@@ -8,8 +8,10 @@ export const Paginate = () => {
     setPage,
     goToPrevPage,
     goToNextPage,
-    pageNumber
+    pageNumber,
    } = usePaginate();  
+
+   if (!pageNumber) return null;
 
   return (
     <main className={currentPokemon.length > 0 ? styles.containerMain : styles.hidePaginate}>
@@ -22,7 +24,6 @@ export const Paginate = () => {
         </li> 
 
         {
-          pageNumber &&  
           pageNumber.map(el => {
             return (
               <li key={el}> 

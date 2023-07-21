@@ -43,6 +43,7 @@
   font-size: 3rem;
   font-weight: 700;
   line-height: 1.2;
+  font-family: var(--font-special-titles);
 }
 
 .homeContent h1::before {
@@ -59,9 +60,10 @@
 
 .homeContent h3 {
   position: relative;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: white;
+  font-family: var(--font-text);
 }
 
 .homeContent h3::before {
@@ -178,18 +180,11 @@
 }
 
 /* Responsive */
-@media only screen and (max-width: 900px) {
-  .home{
-    width: 100%;
-    backdrop-filter: none;
-  }
-}
-
-
-@media only screen and (max-width: 500px) {  
+@media only screen and (max-width: 600px) {  
   .home{
     justify-content: center;
     padding: 0;
+    width: 100%;
   }
 
   .homeContent {

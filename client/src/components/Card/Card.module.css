@@ -1,62 +1,11 @@
-/* Color Types */
 * {
   font-family: var(--font-titles);
-}
-
-.Fire {
-  background-color: #FD7D24;
-  color: white !important;
-}
-
-.Grass {
-  color: black;
-  background-color: #9ACB50;
-}
-
-.Poison {
-  background-color: #B97FC9;
-  color: white !important;
-}
-
-.Flying {
-  background-color: #5ed1ff;
-}
-
-.Water {
-  background-color: #4592C4;
-}
-
-.Bug {
-  background-color: #729F3F;
-  color: white !important;
-}
-
-.Electric {
-  background-color: #EED535;
-}
-
-.Fairy {
-  background-color: #FDB9E9;
-}
-
-.Ground {
-  background-color: #AB9842;
-}
-
-.Normal {
-  background-color: #A4ACAF;
-}
-
-.Fighting {
-  background-color: #D56723;
-  color: white !important;
 }
 
 /* General*/
 .Link {
   text-decoration: none;
 }
-
 
 /* Card */
 .cardContainer {

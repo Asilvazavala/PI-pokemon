@@ -12,9 +12,14 @@ const getApiInfo = async () => {
   const pokemon = [];
   pokemon.push(...fisrtPage.data.results);
 
-  // Pushear en el array los otros 20 pokemon
-  let apiUrl = await axios.get(`${API_URL}?offset=20&limit=20`)
-  pokemon.push(...apiUrl.data.results);
+  // Agregar pokemon del 20 al 100
+  let offset = 20;
+  for(let i = 0;  i < 4; i++) {
+    let apiUrl = await axios.get(`${API_URL}?offset=${offset}&limit=20`)
+    pokemon.push(...apiUrl.data.results);
+
+    offset += 20;
+  }
   
   // Mostrar los datos necesarios 
   const apiInfo = pokemon.map(async (el) => {

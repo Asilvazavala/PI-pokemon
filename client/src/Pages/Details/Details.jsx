@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import styles from './Details.module.css';
+import colorType from '../../Helpers/ColorTypes.module.css';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { Footer } from '../../components/Footer/Footer';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
@@ -124,12 +125,12 @@ export const Details = () => {
                     {
                       !pokemonDetail[0].createdInDB 
                       ? typeClassesApi.map((type, index) => (
-                            <span key={index} className={`${styles[type]} ${styles.typesCard}`}>
+                            <span key={index} className={`${colorType[type]} ${styles.typesCard}`}>
                               {type}
                             </span>
                           ))
                       : typeClassesDB.map((type, index) => (
-                          <span key={index} className={`${styles[type]} ${styles.typesCard}`}>
+                          <span key={index} className={`${colorType[type]} ${styles.typesCard}`}>
                             {type}
                           </span>
                         ))

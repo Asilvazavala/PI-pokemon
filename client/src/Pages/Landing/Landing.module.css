@@ -64,6 +64,7 @@
   font-weight: 700;
   color: white;
   font-family: var(--font-text);
+  margin: 0.8rem 0 1.3rem 0;
 }
 
 .homeContent h3::before {
@@ -79,7 +80,6 @@
 } 
 
 .homeContent .btnBox {
-  margin-top: 20px;
   position: relative;
   display: flex;
   justify-content: space-between;

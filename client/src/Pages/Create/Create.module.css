@@ -125,6 +125,7 @@
 }
 
 .validFeedback {
+  margin-top: .5rem;
   color: rgb(116, 255, 116);
 }
 

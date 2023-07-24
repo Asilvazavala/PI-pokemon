@@ -7,7 +7,7 @@ GET  http://localhost:3001/type HTTP/1.1
 
 
 ### // Buscar Pokemon por ID
-GET  http://localhost:3001/pokemon/f187daf3-991d-4f93-b1a4-ef14577d59a5 HTTP/1.1
+GET  http://localhost:3001/pokemon/75cf1670-7fc8-442d-ad7a-ecd8a205c130 HTTP/1.1
 
 
 ### // Crear un Pokemon
@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ### // Buscar Pokemon por nombre
-GET  http://localhost:3001/pokemon?name=Hola HTTP/1.1
+GET  http://localhost:3001/pokemon?name=Prueba HTTP/1.1
 
 
 ### // Actualizar un pokemon
@@ -49,3 +49,8 @@ Content-Type: application/json
 
 ### // Eliminar un Pokemon
 DELETE  http://localhost:3001/pokemon/2c32ced6-a9f6-4670-889d-be7998fa1ef9 HTTP/1.1
+
+
+### // Paginado
+GET  http://localhost:3001/pokemon/?page=2 HTTP/1.1
+

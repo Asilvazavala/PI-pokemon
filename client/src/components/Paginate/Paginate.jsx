@@ -4,7 +4,7 @@ import { usePaginate } from '../../hooks/usePaginate';
 export const Paginate = () => {
   const { 
     currentPage, 
-    currentPokemon, 
+    allPokemon,
     setPage,
     goToPrevPage,
     goToNextPage,
@@ -14,7 +14,7 @@ export const Paginate = () => {
    if (!pageNumber) return null;
 
   return (
-    <main className={currentPokemon.length > 0 ? styles.containerMain : styles.hidePaginate}>
+    <main className={allPokemon.length > 0 ? styles.containerMain : styles.hidePaginate}>
       <ul className={styles.containerPagination}>
 
         <li>

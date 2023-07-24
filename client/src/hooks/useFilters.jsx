@@ -1,12 +1,9 @@
-import { getAllTypes, resetPokemon, setActiveFilters, resetFilters, filterPokemon } from '../redux/actions';
+import { resetPokemon, setActiveFilters, resetFilters, filterPokemon, updatePage } from '../redux/actions';
 import { useFunctions } from '../hooks/useFunctions'
-import { usePaginate } from '../hooks/usePaginate'
 import { useState, useEffect, useRef } from 'react'
 
 export const useFilters = () => {
   const { dispatch, useSelector } = useFunctions();
-  const { setCurrentPage, currentPokemon } = usePaginate();
-
   const [selectedType, setSelectedType] = useState(null);
   
   const [isOpen, setIsOpen] = useState({
@@ -26,9 +23,6 @@ export const useFilters = () => {
   const selectSourceRef = useRef(null);
 
   useEffect(() => {
-    if (currentPokemon.length < 1) {
-      dispatch(getAllTypes());
-    }
     handleReset();
 
     const handleClickOutside = (event) => {
@@ -58,35 +52,35 @@ export const useFilters = () => {
   },[])
 
   const handleOrderPokemonByName = (e) => {
+    dispatch(updatePage(1));
     dispatch(setActiveFilters(e.target.id, 'order'));
     dispatch(filterPokemon());
     e.preventDefault();
-    setCurrentPage(1);
-    toggleMenu('orderBy')
+    toggleMenu('orderBy');
   };
 
   const handleOrderPokemonByNumber = (e) => {
+    dispatch(updatePage(1));
     dispatch(setActiveFilters(e.target.id, 'order'));
     dispatch(filterPokemon());
     e.preventDefault();
-    setCurrentPage(1);
     toggleMenu('orderBy');
   };
 
   const handleFilterPokemonByDbOrApi = (e) => {
+    dispatch(updatePage(1));
     dispatch(setActiveFilters(e.target.id, 'source'));
     dispatch(filterPokemon());
     e.preventDefault();
-    setCurrentPage(1);
     toggleMenu('selectSource');
   };
 
   const handleFilterPokemonByType = (e) => {
+    dispatch(updatePage(1));
     const typeId = e.target.id;
     dispatch(setActiveFilters(typeId, 'type'));
     dispatch(filterPokemon())
     e.preventDefault();
-    setCurrentPage(1);
 
     if (selectedType === typeId) {
       setSelectedType(null);
@@ -96,6 +90,7 @@ export const useFilters = () => {
   };
 
   const handleReset = () => {
+    dispatch(updatePage(1));
     dispatch(resetPokemon());
     dispatch(resetFilters());
     setSelectedType(null);

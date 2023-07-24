@@ -3,14 +3,14 @@ const router = Router();
 
 
 // Importar todos los routers
-const pokemonRoutes = require('../controllers/pokemon');
+const apiRoutes = require('../controllers/apiControllers');
+const dbRoutes = require('../controllers/dbControllers');
 const typeRoutes = require('../controllers/type'); 
 
 
 // Configurar los routers 
-router.use('/pokemon', pokemonRoutes);
+router.use('/pokemon', dbRoutes);
 router.use('/type', typeRoutes);
-
 
 
 module.exports = router;

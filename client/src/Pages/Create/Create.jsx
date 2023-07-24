@@ -23,8 +23,8 @@ export const Create = () => {
   useEffect(() => {
     if (id) { 
       dispatch(getPokemonDetail(id)) 
-      dispatch(getAllTypes());
     }
+    dispatch(getAllTypes());
   },[id])
   
   return (
@@ -32,7 +32,7 @@ export const Create = () => {
       <NavBar />
       <form className={styles.form}>
         <h2 className={styles.title}>Create your Pokemon</h2>
-        <Input type='text' placeholder='(max. 53 characters)' label='Name' name='name' handleChange={handleChange} err={err.name} input={input.name} />
+        <Input type='text' placeholder='(max. 30 characters)' label='Name' name='name' handleChange={handleChange} err={err.name} input={input.name} />
         <article className={styles.twoInputs}>
           <Input type='number' placeholder='(between 1-500)' label='Attack' name='attack' handleChange={handleChange} err={err.attack} input={input.attack} />
           <Input type='number' placeholder='(between 1-500)' label='Defense' name='defense' handleChange={handleChange} err={err.defense} input={input.defense} />
@@ -74,10 +74,10 @@ export const Create = () => {
               )
             })}
           </article>
-
-          
-          <div className={err.types || !input.types.length ? styles.invalidFeedback : styles.validFeedback}>
-            {!input.types.length && <span>{err.types}</span>}
+          <div className={err.types || input.types.length === 0 ? styles.invalidFeedback : styles.validFeedback}>
+          {err.types || input.types.length === 0
+            ? <span>{err.types}</span> 
+            : <span>Looks good!</span>}
           </div>
         </section>
 

@@ -122,3 +122,12 @@ export const resetFilters = () => {
   }
 export const RESET_FILTERS = 'RESET_FILTERS';
 
+// CHANGE PAGE-----------------------------------------------------------------------------------
+export const updatePage = (payload) => {
+      return ({
+        type: 'SET_PAGE',
+        payload
+      })
+  }
+export const SET_PAGE = 'SET_PAGE';
+

@@ -54,7 +54,7 @@
   }
 
   .inputSearch {
-    max-width: 65%;
+    width: 65%;
     height: 2.5rem;
   }
 
@@ -68,14 +68,22 @@
   }
 }
 
-
 @media only screen and (max-width: 390px) {
   .inputSearch {
-    max-width: 60%;
+    width: 60%;
   }
 
   .containerSerchBar button {
     max-width: 40%;
-    padding: 5px 2px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .inputSearch {
+    width: 53%;
+  }
+
+  .containerSerchBar button {
+    max-width: 47%;
   }
 }

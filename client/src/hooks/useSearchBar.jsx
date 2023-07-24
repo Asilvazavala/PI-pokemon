@@ -1,11 +1,10 @@
-import { useState } from 'react'
-import { useFunctions } from './useFunctions'
-import { usePaginate } from './usePaginate'
-import { useNotification } from './useNotification'
+import { useState } from 'react';
+import { useFunctions } from './useFunctions';
+import { useNotification } from './useNotification';
+import { searchPokemonByName, updatePage, resetFilters } from '../redux/actions'
 
 export const useSearchBar = () => {
-  const { dispatch, history, searchPokemonByName } = useFunctions();
-  const { setCurrentPage } = usePaginate();
+  const { dispatch, history } = useFunctions();
   const { notificationError } = useNotification();
   
   const [results, setResults] = useState([]);
@@ -18,13 +17,14 @@ export const useSearchBar = () => {
   };
 
   const handleSubmit = (e) => {    
+    dispatch(updatePage(1));
+    dispatch(resetFilters());
     e.preventDefault();
     if (!search) {
       return notificationError('Enter a valid pokemon please')
     }
     dispatch(searchPokemonByName(search));
     setSearch('');
-    setCurrentPage(1);
     history('/home');    
   };
 
@@ -33,9 +33,10 @@ export const useSearchBar = () => {
   };
 
   const handleItemSelected = (item) => {  
-    setSearch(item)
-    setCurrentPage(1);
-    dispatch(searchPokemonByName(item))
+    dispatch(updatePage(1));
+    dispatch(resetFilters());
+    setSearch(item);
+    dispatch(searchPokemonByName(item));
     setSearch('');
     history('/home');
   }

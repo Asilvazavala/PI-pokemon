@@ -12,19 +12,21 @@ import {
   SET_ACTIVE_FILTERS,
   RESET_FILTERS,
   RESET_POKEMON,
+  SET_PAGE
 } from './actions';
 
 const initialState = {
   pokemon: [],
   allPokemon: [],
   types: [],
-  allTypes: [],
   detail: [],
   activeFilter: {
     order: null,
     source: null,
     type: null
-  }
+  },
+  currentPage: 1,
+  currentPokemon: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -35,24 +37,25 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemon: action.payload,
         allPokemon: action.payload,
+        currentPokemon: action.payload
       };
 
     case GET_TYPES:
       return {
         ...state,
         types: action.payload,
-        allTypes: action.payload
       };
 
     case SEARCH_POKEMON_BY_NAME:
       
       return {
         ...state,
-        allPokemon: action.payload
+        currentPokemon: action.payload,
+        pokemon: action.payload
       };
 
     case FILTER_POKEMON:
-      let filter = [...state.pokemon];
+      let filter = [...state.allPokemon];
 
       if (state.activeFilter.source === 'Custom') {
         filter = filter.filter(el => el.createdInDB);
@@ -80,7 +83,7 @@ const rootReducer = (state = initialState, action) => {
         const allTypes = filterTypeApi.concat(filterTypeDb);
         if (!allTypes.length) {
           notificationError(`No pokemon of type "${state.activeFilter.type}" try with another`)
-            filter = state.allPokemon
+            filter = state.currentPokemon
           } else {
               filter = allTypes;
             }
@@ -104,7 +107,8 @@ const rootReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        allPokemon: filter
+        currentPokemon: filter,
+        pokemon: filter
       }
 
     case GET_POKEMON_DETAIL:
@@ -160,9 +164,22 @@ const rootReducer = (state = initialState, action) => {
     case RESET_POKEMON:      
       return {
         ...state,
-        allPokemon: state.pokemon
+        currentPokemon: state.allPokemon,
+        pokemon: state.allPokemon
       }
     
+    case SET_PAGE:
+      state.currentPage = action.payload;
+
+      const firstPokemonIndex = (state.currentPage - 1) * 12;
+      const lastPokemonIndex = firstPokemonIndex + 12;
+      const currentPokemon = state.pokemon.slice(firstPokemonIndex, lastPokemonIndex);
+      return {
+        ...state,
+        currentPokemon: currentPokemon
+      }
+
+        
       default:
         return state;
     }

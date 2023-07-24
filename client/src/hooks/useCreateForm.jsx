@@ -11,7 +11,7 @@ export const useCreateForm = () => {
   const detail = useSelector((state) => state.detail);  
 
   const [err, setErr]= useState({});
-
+  
   const[input, setInput]= useState({
     name: '',
     image: handleNullImage,
@@ -49,27 +49,34 @@ export const useCreateForm = () => {
   }
 
   const handleChange = (e) => {
-    setInput({ ...input, [e.target.name] : e.target.value })
-    setErr(Validation({ ...input, [e.target.name]: e.target.value }))
+    const { name, value } = e.target;
+
+    setInput((prevInput) => ({
+      ...prevInput,
+      [name]: value,
+    }));
+
+    setErr(Validation({ 
+      ...input, 
+      [name]: value 
+    }))
   };
 
   const handleTypes = (e) => {
     const selectedType = e.target.id;
+    const updatedTypes = input.types.includes(selectedType)
+    ? input.types.filter((type) => type !== selectedType)
+    : [...input.types, selectedType];
 
-    if (input.types.includes(selectedType)) {
-      setInput((prevInput) => ({
-        ...prevInput,
-        types: prevInput.types.filter((type) => type !== selectedType),
-      }));
-    } else {
-        if (input.types.length >= 2) return;
-        setInput((prevInput) => ({
-          ...prevInput,
-          types: [...prevInput.types, selectedType],
-        }));
-      }
+    setInput((prevInput) => ({
+      ...prevInput,
+      types: updatedTypes,
+    }));
 
-    setErr(Validation({ ...input, [e.target.name]: e.target.value }))
+    setErr((prevErr) => ({
+      ...prevErr,
+      types: updatedTypes.length === 0 ? 'Select a valid type' : '',
+    }));
   };
 
   const handleChangeFile = (e) => {

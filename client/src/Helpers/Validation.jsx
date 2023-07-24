@@ -26,7 +26,9 @@ export const Validation = (input) => {
     err.name = 'Type a valid name';
   } else if (!nameRegExp.test(input.name)) {
     err.name = 'Name must start with capital letter';
-    }
+    } else if (input.name.length > 30) {
+      err.name = 'Name must have a maximum of 30 characters';
+      }
 
   // Validation Input attack 
   if (!input.attack) {
@@ -71,7 +73,7 @@ export const Validation = (input) => {
     }
 
   // Validation Input Types
-  if (!input.types.length) {
+  if (input.types.length === 0) {
     err.types = 'Select a valid type';
   } 
 

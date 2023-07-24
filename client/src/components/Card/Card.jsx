@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import styles from './Card.module.css';
 import colorType from '../../Helpers/ColorTypes.module.css';
 import { usePaginate } from '../../hooks/usePaginate'
@@ -7,20 +6,14 @@ import { SkeletonLoader } from '../SkeletonLoader/SkeletonLoader';
 
 export const Card = () => {
   const { currentPokemon } = usePaginate();
-  const { dispatch, getAllPokemon, Link, goTop } = useFunctions();
-
-  useEffect(() => {    
-    if (currentPokemon.length === 0) {
-      dispatch(getAllPokemon());
-    }
-  },[currentPokemon])  
-
+  const { Link, goTop } = useFunctions();
+  
   return (
     <main>
       <ul className={styles.cardContainer}>
       {
         currentPokemon.length > 0 
-        ? currentPokemon.map((el) => {
+        ? currentPokemon.slice(0, 12).map((el) => {
           const typeClassesDB = el.types.map((type) => [type.name])
           const typeClassesApi = el.types.map(el=> [el])
           return ( 

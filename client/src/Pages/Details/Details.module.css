@@ -103,8 +103,9 @@
 .detailsContainer header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 1.5rem;
   width: 88vw;
+  border-bottom: 1px solid var(--red);
 }
 
 .detailsContainer header div {
@@ -114,6 +115,7 @@
 .detailsContainer header div button {
   cursor: pointer;
   border-radius: .3rem;
+  margin-bottom: .5rem;
 }
 
 .detailsContainer header div i {
@@ -152,19 +154,39 @@
 }
 
 .buttonsContainer {
-  margin-bottom: .7rem;
+  margin-bottom: 1.4rem;
   width: 30vw;
 }
 
-.buttonsContainer .btnDelete {
-  margin-right: 10%;
-}
 
 .buttonsContainer .btnUpdate,
 .buttonsContainer .btnDelete {
   border-radius: .3rem;
   cursor: pointer;
   width: 45%;
+}
+
+.buttonsContainer .btnUpdate {
+  border: 2px solid var(--red-light) ;
+  background: var(--red) ;
+  color: var(--red-light);
+}
+
+.buttonsContainer .btnUpdate:hover {
+  color:var(--red);
+  border: 2px solid var(--red) ;
+}
+
+.buttonsContainer .btnUpdate::before {
+  background: var(--red-light);
+}
+
+.buttonsContainer .btnUpdate:hover::before {
+  background: var(--red-light) ;
+}
+
+.buttonsContainer .btnDelete {
+  margin-right: 10%;
 }
 
 /* Stats */

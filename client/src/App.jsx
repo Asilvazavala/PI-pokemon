@@ -1,15 +1,17 @@
-import {Route, Routes} from 'react-router-dom';
-import {Landing} from './Pages/Landing/Landing';
-import {Home} from './Pages/Home/Home';
-import {Create} from './Pages/Create/Create';
-import {Details} from './Pages/Details/Details';
-import axios from 'axios'
+import { Route, Routes } from 'react-router-dom';
+import { Landing } from './Pages/Landing/Landing';
+import { Home } from './Pages/Home/Home';
+import { Create } from './Pages/Create/Create';
+import { Details } from './Pages/Details/Details';
+import { Audio } from './components/Audio/Audio';
+import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001/'
 
 function App() {
   return (
-    <div>
+    <main>
+      <Audio />
       <Routes>
         <Route exact path='/' element={<Landing />} />
         <Route path='/home' element={<Home />} />
@@ -17,7 +19,7 @@ function App() {
         <Route path='/create' element={<Create />} />
         <Route path='/details/:id' element={<Details />} />
       </Routes>
-    </div>
+    </main>
   );
 }
 

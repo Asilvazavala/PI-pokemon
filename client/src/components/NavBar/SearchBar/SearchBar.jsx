@@ -2,10 +2,15 @@ import styles from './SearchBar.module.css';
 import { Results } from '../Results/Results'
 import { useSearchBar } from '../../../hooks/useSearchBar'
 import { usePaginate } from '../../../hooks/usePaginate'
+import PropTypes from 'prop-types';
 
 export const SearchBar = ({ setSidebarState }) => {
+  SearchBar.propTypes = {
+    setSidebarState: PropTypes.func.isRequired,
+  };
+    
   const { results, handleChange, handleSubmit, handleResults, handleItemSelected, search } = useSearchBar()
-  const { pokemon } = usePaginate()
+  const { allPokemon } = usePaginate()
 
   return (
     <main>
@@ -25,7 +30,6 @@ export const SearchBar = ({ setSidebarState }) => {
             value={search} 
             type="search"
             placeholder="Search pokemon..." 
-            aria-label="Search" 
           />        
           <button 
             id='btnAlert' 
@@ -34,9 +38,9 @@ export const SearchBar = ({ setSidebarState }) => {
           </button>
 
           <aside className={styles.containerResults}>
-          { pokemon && 
+          { allPokemon && 
             <Results 
-              allPokemon={pokemon} 
+              allPokemon={allPokemon} 
               onItemSelected={handleItemSelected} 
               search={search} 
               onResultsCalculated={handleResults}

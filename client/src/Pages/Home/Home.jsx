@@ -16,21 +16,18 @@ export const Home = () => {
   useEffect(() => {    
     if (currentPokemon.length === 0) {
       dispatch(getAllPokemon());
-
-      setTimeout(() => {
-        dispatch(getAllTypes());
-      }, 2000)
+      dispatch(getAllTypes());
     }
     
-  },[currentPokemon, dispatch])  
+  },[])  
 
   return (
-    <div id='home'>
+    <main id='home'>
       <NavBar />
       <Filters />
       <Card />
       <Paginate />
       <Footer />
-    </div>
+    </main>
   )
 }

@@ -58,7 +58,7 @@ export const useDetails = () => {
 
     setTimeout(() => {
       history('/home');
-    },2000)
+    },2500)
   }
 
   return { 

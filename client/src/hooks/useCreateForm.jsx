@@ -45,7 +45,7 @@ export const useCreateForm = () => {
     dispatch(getAllPokemon());
     setTimeout(() => {
       history('/home');
-    },2000)
+    },2500)
   }
 
   const handleChange = (e) => {
@@ -132,7 +132,7 @@ export const useCreateForm = () => {
     dispatch(getAllPokemon());
     setTimeout(() => {
       history('/home');
-    },2000)
+    },2500)
   };
 
   return {

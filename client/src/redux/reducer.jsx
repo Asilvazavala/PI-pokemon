@@ -132,34 +132,28 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       }
 
-    case SET_ACTIVE_FILTERS:      
-      let activeFilters = state.activeFilter 
-
-      for (let key in activeFilters) {
-        if (key === action.filterType) {
-          if (activeFilters[key] === action.payload) {
-            activeFilters[key] = null
-          } else {
-            activeFilters[key] = action.payload
-          }
-        }
-      }
-  
+    case SET_ACTIVE_FILTERS:
       return {
         ...state,
-        activeFilter: activeFilters
-      }
+        activeFilter: {
+          ...state.activeFilter,
+          [action.filterType]: state.activeFilter[action.filterType] === action.payload
+            ? null
+            : action.payload
+        }
+      };
 
-    case RESET_FILTERS:      
-      let resetFilters = state.activeFilter 
-      for (let key in resetFilters) {
-        resetFilters[key] = null      
-    }
-  
+    case RESET_FILTERS:
+      const resetFilters = {
+        order: null,
+        source: null,
+        type: null
+      };
+    
       return {
         ...state,
         activeFilter: resetFilters
-      }
+      };
 
     case RESET_POKEMON:      
       return {

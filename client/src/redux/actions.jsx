@@ -63,7 +63,7 @@ export const getPokemonDetail = (id) => {
       })
     }
     catch(error) {
-      console.log(error);
+      console.error(error);
     }
   }
 };

@@ -1,4 +1,6 @@
 import styles from './Card.module.css';
+import { useEffect } from 'react';
+import { getAllPokemon } from '../../redux/actions';
 import colorType from '../../Helpers/ColorTypes.module.css';
 import { usePaginate } from '../../hooks/usePaginate'
 import { useFunctions } from '../../hooks/useFunctions'
@@ -6,8 +8,14 @@ import { SkeletonLoader } from '../SkeletonLoader/SkeletonLoader';
 
 export const Card = () => {
   const { currentPokemon } = usePaginate();
-  const { Link, goTop } = useFunctions();
+  const { Link, goTop, dispatch } = useFunctions();
   
+  useEffect(() => {
+    if (currentPokemon.length === 0) {
+      dispatch(getAllPokemon());
+    }
+  }, []);
+
   return (
     <main>
       <ul className={styles.cardContainer}>

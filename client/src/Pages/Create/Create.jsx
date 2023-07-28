@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import styles from './Create.module.css';
 import { useFunctions } from '../../hooks/useFunctions';
 import { useCreateForm } from '../../hooks/useCreateForm';
-import { getAllTypes, getPokemonDetail } from '../../redux/actions';
+import { getPokemonDetail } from '../../redux/actions';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { Input } from '../../components/Form/Input';
 
@@ -24,7 +24,6 @@ export const Create = () => {
     if (id) { 
       dispatch(getPokemonDetail(id)) 
     }
-    dispatch(getAllTypes());
   },[id])
   
   return (

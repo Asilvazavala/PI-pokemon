@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import { useFunctions } from './hooks/useFunctions';
+import { getAllTypes } from './redux/actions';
+
 import { Route, Routes } from 'react-router-dom';
 import { Landing } from './Pages/Landing/Landing';
 import { Home } from './Pages/Home/Home';
@@ -9,6 +13,12 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:3001/'
 
 function App() {
+  const { dispatch } = useFunctions();
+
+  useEffect(() => {    
+    dispatch(getAllTypes()); 
+  },[]);  
+
   return (
     <main>
       <Audio />

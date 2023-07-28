@@ -6,7 +6,9 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+// const DATABASE_DEPLOY_URL = `postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`
+const DATABASE_LOCAL__URL = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
+const sequelize = new Sequelize(DATABASE_LOCAL__URL, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -34,8 +36,13 @@ const { Pokemon, Type } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Pokemon.belongsToMany(Type, {through : "pokemon_type"});
-Type.belongsToMany(Pokemon, {through : "pokemon_type"});
+Pokemon.belongsToMany(Type, {
+  through : "pokemon_type"
+});
+
+Type.belongsToMany(Pokemon, {
+  through : "pokemon_type"
+});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

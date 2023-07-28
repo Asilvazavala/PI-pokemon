@@ -5,40 +5,47 @@ const { getAllPokemon } = require('./apiControllers');
 
 // Crear un Pokemon
 router.post('/', async (req, res) => {
-  // Nueva info pasada por el usuario
   let { name, image, types, hp, attack, defense, speed, height, weight, createdInDB } = req.body;
   
-  // Crear el pokemon en la DB Pokemon
-  let newPokemon = await Pokemon.create(
-  { name, image, hp, attack, defense, speed, height, weight, createdInDB })
+  try {
+    let newPokemon = await Pokemon.create(
+    { name, image, hp, attack, defense, speed, height, weight, createdInDB })
+    
+    let addTypes = await Type.findAll({ where: { name: types } })
+    newPokemon.addType(addTypes);
   
-  // Agregar el tipo de Pokemon
-  let addTypes = await Type.findAll({ where: { name: types } })
-  newPokemon.addType(addTypes);
-
-  res.send('Pokemon creado con éxito');
+    res.send('Pokemon creado con éxito');
+  } catch (error) {
+      console.log(error)
+      res.status(404).send(error)
+    }
 
 });
 
 
 // Eliminar un Pokemon
 router.delete('/:id', async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   const allPokemon = await getAllPokemon();
   let index = allPokemon.findIndex(el => el.id == id);
   
-  if(index >= 0) {
-    allPokemon.splice(index, 1);
-    res.send('Pokemon deleted succesfully!!');
-  } else {
-    res.status(404).send(`Pokemon with ID "${id}" not found, try with another`);
+  try {
+    if (index >= 0) {
+      allPokemon.splice(index, 1);
+      res.send('Pokemon deleted succesfully!!');
+    } else {
+      res.status(404).send(`Pokemon with ID "${id}" not found, try with another`);
+      }
+  
+    if (id) {
+      await Pokemon.destroy({
+        where : {id : id}
+      })
     }
-
-  if(id) {
-    await Pokemon.destroy({
-      where : {id : id}
-    })
-  }
+  } catch (error) {
+      console.log(error)
+      res.status(404).send(error)
+    }
 });
 
 
@@ -51,33 +58,43 @@ router.put('/:id', async (req, res) => {
   } = req.body;
 
   // Validar si el ID existe en la DB
-  const findId = await Pokemon.findByPk(id)
-  if (!findId) {
-    res.status(400).send(`Pokemon with ID ${id} not found`)
-  } else {
-    // Actualizar la nueva info en la DB Pokemon
-    Pokemon.update ({
-      name, image, types, hp, attack, defense, speed, height, weight, 
-      },
-      {
-        where : { id, }
-      },
-    ); 
-    res.send('Pokemon modified succesfully!!');
-    }
+  try {
+    const pokemonToUpdate = await Pokemon.findByPk(id)
+    if (!pokemonToUpdate) {
+      res.status(400).send(`Pokemon with ID ${id} not found`)
+    } else {
+      // Actualizar la nueva info en la DB Pokemon
+      pokemonToUpdate.update ({
+        name, image, hp, attack, defense, speed, height, weight, 
+      });
 
+      const typesToUpdate = await Type.findAll({ where: { name: types } });
+      await pokemonToUpdate.setTypes([]);
+      await pokemonToUpdate.addTypes(typesToUpdate); 
+
+      res.send('Pokemon modified succesfully!!');
+      }
+  } catch (error) {
+      console.log(error)
+      res.status(404).send(error)
+    }
 });
 
 // Obtener todos los nombres de Pokemon || Buscar por nombre
 router.get('/', async (req, res) => {
+  const { name } = req.query;
   const allPokemon = await getAllPokemon();
-  const name = req.query.name;
 
-  if(name) {
-    const findPokemonName = allPokemon.filter(el => el.name.toLowerCase() === name.toLowerCase());
-    findPokemonName.length > 0 
-      ? res.send(findPokemonName) 
-      : res.status(404).send(`No existe ningún pokemon con nombre "${name}" intenta con otro nombre`);
+  if (name) {
+    try {
+      const findPokemonName = allPokemon.filter(el => el.name.toLowerCase() === name.toLowerCase());
+      if (findPokemonName.length > 0 ) {
+        res.send(findPokemonName)
+      }
+    } catch (error) {
+        console.log(error)
+        res.status(404).send(`No existe ningún pokemon con nombre "${name}" intenta con otro nombre`);
+      }
   } else {
       res.send(allPokemon);
     }
@@ -86,14 +103,19 @@ router.get('/', async (req, res) => {
 
 // Buscar Pokemon por ID
 router.get('/:id', async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   const allPokemon = await getAllPokemon();
 
-  if(id) {
-    const findPokemonId = allPokemon.filter(el => el.id == id);
-    findPokemonId.length > 0 
-      ? res.send(findPokemonId) 
-      : res.status(404).send(`No existe ningún pokemon con id "${id}" intenta con otro id`);
+  if (id) {
+    try {
+      const findPokemonId = allPokemon.filter(el => el.id == id);
+      if (findPokemonId.length > 0) {
+        res.send(findPokemonId) 
+      } 
+    } catch (error) {
+        console.log(error)
+        res.status(404).send(`No existe ningún pokemon con id "${id}" intenta con otro id`);
+      }
   } else {
       res.send(allPokemon);
     }

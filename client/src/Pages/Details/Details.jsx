@@ -43,23 +43,23 @@ export const Details = () => {
         pokemonDetail.length > 0 
           ?
           <section className={styles.detailsContainer}>
-            {/* <div className={styles.prevNextPokemon}>
-              <article className={styles.prevPokemon} onClick={handlePrevPokemon}>
-                <Link to= {`/details/${prevPokemon < 1 ? 40 : prevPokemon}`}>
+            <div className={styles.prevNextPokemon}>
+              <Link style={{textDecoration: 'none'}} to= {`/details/${prevPokemon < 1 ? 100 : prevPokemon}`}>
+                <article className={styles.prevPokemon} onClick={handlePrevPokemon}>
                   <i className='bx bx-left-arrow-circle'></i>
-                </Link>
-                <p className={styles.id}>N.° {findPrev?.id}</p>
-                <p className={styles.name}>{findPrev?.name}</p>
-              </article>
+                  <p className={styles.id}>N.° {findPrev?.id}</p>
+                  <p className={styles.name}>{findPrev?.name}</p>
+                </article>
+              </Link>
 
-              <article className={styles.nextPokemon} onClick={handleNextPokemon}>
-                <p className={styles.name}>{findNext?.name}</p>
-                <p className={styles.id}>N.° {findNext?.id}</p>
-                <Link to= {`/details/${nextPokemon > 40 ? 1 : nextPokemon}`}>
+              <Link style={{textDecoration: 'none'}} to= {`/details/${nextPokemon > 100 ? 1 : nextPokemon}`}>
+                <article className={styles.nextPokemon} onClick={handleNextPokemon}>
+                  <p className={styles.name}>{findNext?.name}</p>
+                  <p className={styles.id}>N.° {findNext?.id}</p>
                   <i className='bx bx-right-arrow-circle'></i>
-                </Link>
-              </article>
-            </div> */}
+                </article>
+              </Link>
+            </div>
 
 
             <header>

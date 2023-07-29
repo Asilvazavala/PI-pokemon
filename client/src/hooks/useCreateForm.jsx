@@ -23,10 +23,10 @@ export const useCreateForm = () => {
     height: '',
     weight: '',
   });
-
+  
   function handleSubmit(e) {
     e.preventDefault(); 
-    if (Object.keys(err).length || !input.name) return notificationWarning('Complete all fields please'); 
+    if (Object.keys(err).length > 1 || !input.name) return notificationWarning('Complete all fields please'); 
 
     dispatch(postPokemon(input));
     notificationSuccess('Pokemon created succesfully!!'); 
@@ -41,8 +41,8 @@ export const useCreateForm = () => {
       height: '',
       weight: '',
     })
-
     dispatch(getAllPokemon());
+
     setTimeout(() => {
       history('/home');
     },2500)
@@ -128,8 +128,8 @@ export const useCreateForm = () => {
       height: '',
       weight: '',
     })
-
     dispatch(getAllPokemon());
+
     setTimeout(() => {
       history('/home');
     },2500)

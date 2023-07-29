@@ -59,6 +59,9 @@ const rootReducer = (state = initialState, action) => {
 
       if (state.activeFilter.source === 'Custom') {
         filter = filter.filter(el => el.createdInDB);
+        if (!filter.length) {
+          notificationError('No custom pokemon yet')
+        }
       }
 
       if (state.activeFilter.source === 'Api') {
@@ -120,17 +123,21 @@ const rootReducer = (state = initialState, action) => {
     case POST_POKEMON:
       return {
         ...state,
-      }
+      };
 
     case DELETE_POKEMON:
+      const updatedPokemonList = state.pokemon.filter(pokemon => pokemon.id !== action.payload);
       return {
         ...state,
-      }
-      
-    case UPDATE_POKEMON:
+        pokemon: updatedPokemonList,
+        allPokemon: updatedPokemonList,
+        currentPokemon: updatedPokemonList
+      };
+    
+    case UPDATE_POKEMON:  
       return {
         ...state,
-      }
+      };
 
     case SET_ACTIVE_FILTERS:
       return {

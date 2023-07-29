@@ -24,18 +24,12 @@ const updateCustomPokemon = async (id, formData) => {
         name, image, hp, attack, defense, speed, height, weight
       });
 
-      // Obtener los objetos Type asociados al Pokémon
       const typesToUpdate = await Type.findAll({ where: { name: types } });
-
-      // Eliminar cualquier relación existente entre el Pokémon y los types
       await pokemonToUpdate.setTypes([]);
-
-      // Establecer las nuevas relaciones con los types actualizados
       await pokemonToUpdate.addTypes(typesToUpdate);
 
       return {
-        status: 'done',
-        message: "Pokemon modified successfully!",
+        message: 'Pokemon modified succesfully!'
       };
     }
   } catch (error) {

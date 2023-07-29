@@ -71,29 +71,37 @@ export const GET_POKEMON_DETAIL= 'GET_POKEMON_DETAIL';
 
 // POST POKEMON -----------------------------------------------------------------------------------
 export const postPokemon = (payload) => {
-  return async function ()  {
-    const newPokemon = await axios.post(`/pokemon`, payload);
-    return newPokemon;
-  }
+  return async function(dispatch) {
+    await axios.post(`/pokemon`, payload);
+    dispatch({
+      type: POST_POKEMON,
+    });
+  };
 };
 export const POST_POKEMON= 'POST_POKEMON';
 
 // DELETE POKEMON -----------------------------------------------------------------------------------
 export const deletePokemon = (id) => {
-  return async function() {
-    const deletePokemon = await axios.delete(`/pokemon/${id}`);
-    return deletePokemon;
-  }
+  return async function(dispatch) {
+    await axios.delete(`/pokemon/${id}`);
+    dispatch({
+      type: DELETE_POKEMON,
+      payload: id 
+    });
+  };
 };
 export const DELETE_POKEMON= 'DELETE_POKEMON';
 
 // UPDATE POKEMON -----------------------------------------------------------------------------------
 export const updatePokemon = (id, payload) => {
-  return async function ()  {
-    const updatePokemon = await axios.put(`/pokemon/${id}`, payload);
-    return updatePokemon;
-  }
-};
+    return async function(dispatch) {
+      await axios.put(`/pokemon/${id}`, payload);
+      dispatch({
+        type: UPDATE_POKEMON,
+        payload: id
+      });
+    };
+  };
 export const UPDATE_POKEMON= 'UPDATE_POKEMON';
 
 // RESET POKEMON -----------------------------------------------------------------------------------

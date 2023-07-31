@@ -73,8 +73,10 @@ export const GET_POKEMON_DETAIL= 'GET_POKEMON_DETAIL';
 export const postPokemon = (payload) => {
   return async function(dispatch) {
     await axios.post(`/pokemon`, payload);
+    let json = await axios.get(`/pokemon`);
     dispatch({
       type: POST_POKEMON,
+      payload: json.data
     });
   };
 };
@@ -96,9 +98,10 @@ export const DELETE_POKEMON= 'DELETE_POKEMON';
 export const updatePokemon = (id, payload) => {
     return async function(dispatch) {
       await axios.put(`/pokemon/${id}`, payload);
+      let json = await axios.get(`/pokemon`);
       dispatch({
         type: UPDATE_POKEMON,
-        payload: id
+        payload: json.data
       });
     };
   };

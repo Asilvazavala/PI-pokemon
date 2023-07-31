@@ -43,7 +43,7 @@ export const Details = () => {
         pokemonDetail.length > 0 
           ?
           <section className={styles.detailsContainer}>
-            <div className={styles.prevNextPokemon}>
+            <div className={pokemonDetail[0].id.length > 10 ? styles.hide : styles.prevNextPokemon}>
               <Link style={{textDecoration: 'none'}} to= {`/details/${prevPokemon < 1 ? 100 : prevPokemon}`}>
                 <article className={styles.prevPokemon} onClick={handlePrevPokemon}>
                   <i className='bx bx-left-arrow-circle'></i>
@@ -60,6 +60,7 @@ export const Details = () => {
                 </article>
               </Link>
             </div>
+          
 
 
             <header>

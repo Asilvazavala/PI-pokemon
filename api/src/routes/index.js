@@ -1,14 +1,3 @@
-// const { Router } = require('express');
-// const router = Router();
-
-// const pokemonRoutes = require('../controllers/dbControllers');
-// const typeRoutes = require('../controllers/type'); 
-
-// router.use('/pokemon', pokemonRoutes);
-// router.use('/type', typeRoutes);
-
-// module.exports = router;
-
 const { Router } = require('express');
 
 // Importar todos los routers;

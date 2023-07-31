@@ -3,7 +3,7 @@ import { useFunctions } from './useFunctions';
 import { useNotification } from './useNotification';
 import { Validation } from '../Helpers/Validation';
 import handleNullImage from '../images/handleNullImage.png';
-import { postPokemon, updatePokemon, getAllPokemon } from '../redux/actions';
+import { postPokemon, updatePokemon } from '../redux/actions';
 
 export const useCreateForm = () => {
   const { dispatch, history, useSelector, id } = useFunctions();
@@ -41,7 +41,6 @@ export const useCreateForm = () => {
       height: '',
       weight: '',
     })
-    dispatch(getAllPokemon());
 
     setTimeout(() => {
       history('/home');
@@ -128,7 +127,6 @@ export const useCreateForm = () => {
       height: '',
       weight: '',
     })
-    dispatch(getAllPokemon());
 
     setTimeout(() => {
       history('/home');

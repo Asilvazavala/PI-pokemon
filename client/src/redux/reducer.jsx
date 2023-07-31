@@ -123,6 +123,9 @@ const rootReducer = (state = initialState, action) => {
     case POST_POKEMON:
       return {
         ...state,
+        pokemon: action.payload,
+        allPokemon: action.payload,
+        currentPokemon: action.payload
       };
 
     case DELETE_POKEMON:
@@ -134,9 +137,12 @@ const rootReducer = (state = initialState, action) => {
         currentPokemon: updatedPokemonList
       };
     
-    case UPDATE_POKEMON:  
+    case UPDATE_POKEMON:      
       return {
         ...state,
+        pokemon: action.payload,
+        allPokemon: action.payload,
+        currentPokemon: action.payload
       };
 
     case SET_ACTIVE_FILTERS:

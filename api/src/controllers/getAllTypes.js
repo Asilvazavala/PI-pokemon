@@ -2,7 +2,7 @@ const axios = require('axios');
 const API_URL_TYPES = 'https://pokeapi.co/api/v2/type';
 const { Type } = require('../db');
 
-const getAllGenres = async () => {
+const getAllTypes = async () => {
   const storedTypes = await Type.findAll() 
   if (storedTypes.length) {
     return storedTypes
@@ -25,4 +25,4 @@ const getAllGenres = async () => {
    return (allPokemonTypes);
 }
 
-module.exports = getAllGenres;
+module.exports = getAllTypes;

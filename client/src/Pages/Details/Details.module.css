@@ -234,8 +234,8 @@
 
 @media only screen and (max-width: 800px) {
   .mainContainer .prevNextPokemon {
-    margin-top: 3rem;
     width: 88vw;
+    margin: 0 0 1rem 0;
   }
 
   .mainContainer .prevPokemon {
@@ -265,7 +265,7 @@
   .mainContainer .prevPokemon,
   .mainContainer .nextPokemon {
     gap: .5rem;
-    padding: .5rem .7rem;
+    padding: 0 .7rem;
   }
 
   .mainContainer .prevNextPokemon i {

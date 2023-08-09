@@ -4,7 +4,7 @@ import { getAllPokemon } from '../../redux/actions';
 import colorType from '../../Helpers/ColorTypes.module.css';
 import { usePaginate } from '../../hooks/usePaginate'
 import { useFunctions } from '../../hooks/useFunctions'
-import { SkeletonLoader } from '../SkeletonLoader/SkeletonLoader';
+import { SLCards } from '../SkeletonLoader/SLCards';
 
 export const Card = () => {
   const { currentPokemon } = usePaginate();
@@ -63,7 +63,7 @@ export const Card = () => {
           </section>
           )
         }) 
-        : <SkeletonLoader />
+        : <SLCards />
        }
       </ul>  
     </main>

@@ -4,7 +4,7 @@ import colorType from '../../Helpers/ColorTypes.module.css';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { Footer } from '../../components/Footer/Footer';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
-import { SkeletonLoaderDetails } from '../../components/SkeletonLoader/SkeletonLoaderDetails';
+import { SLDetails } from '../../components/SkeletonLoader/SLDetails';
 import { useDetails } from '../../hooks/useDetails';
 import { Modal } from '../../components/Modal/Modal';
 
@@ -141,7 +141,7 @@ export const Details = () => {
               </aside>
             </footer>
           </section> 
-          : <SkeletonLoaderDetails />
+          : <SLDetails />
      }
       <Footer />
     </main>

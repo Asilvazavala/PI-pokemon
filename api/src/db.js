@@ -2,10 +2,17 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const { POSTGRES_URL } = process.env;
+const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE, PORT } = process.env;
 
-const DATABASE_LOCAL__URL = POSTGRES_URL
+const DATABASE_LOCAL__URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${PORT}/${POSTGRES_DATABASE}`
 const sequelize = new Sequelize(DATABASE_LOCAL__URL, {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Para que la conexión funcione en entornos de prueba como Vercel
+    },
+  },
+
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });

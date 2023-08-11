@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const { POSTGRES_URL} = process.env;
+const { POSTGRES_URL } = process.env;
 
 const sequelize = new Sequelize(POSTGRES_URL, {
   logging: false, // set to console.log to see the raw SQL queries

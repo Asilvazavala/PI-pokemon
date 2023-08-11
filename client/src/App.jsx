@@ -10,7 +10,7 @@ import { Details } from './Pages/Details/Details';
 import { Audio } from './components/Audio/Audio';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3001/'
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
 function App() {
   const { dispatch } = useFunctions();

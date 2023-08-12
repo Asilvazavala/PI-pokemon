@@ -8,7 +8,7 @@ export const useDetails = () => {
   const { notificationSuccess } = useNotification();
 
   const pokemonDetail = useSelector((state) => state.detail)
-  const pokemon = useSelector((state) => state.pokemon)
+  const pokemon = useSelector((state) => state.allPokemon)
 
   const typeClassesDB = pokemonDetail[0]?.types.map(el => el.name)
   const typeClassesApi = pokemonDetail[0]?.types

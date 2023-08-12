@@ -335,7 +335,7 @@
   }
 }
 
-@media only screen and (max-width: 350px) { 
+@media only screen and (max-width: 380px) { 
   .detailsContainer .textTypeContainer {
     max-width: 76vw;
   }
@@ -356,6 +356,39 @@
   
   .mainContainer .prevNextPokemon p {
     font-size: .9rem;
+  }
+
+  .detailsContainer header p {
+    font-size: 1.7rem;
+    margin-right: 20px;
+  }
+
+  .detailsContainer header span {
+    font-size: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 340px) { 
+  .mainContainer .prevPokemon,
+  .mainContainer .nextPokemon {
+    gap: .2rem;
+    padding: .4rem .3rem;
+  }
+
+  .mainContainer .prevNextPokemon i {
+    font-size: 1.2rem;
+  }
+  
+  .mainContainer .prevNextPokemon p {
+    font-size: .8rem;
+  }
+
+  .detailsContainer header p {
+    font-size: 1.5rem;
+  }
+
+  .detailsContainer header span {
+    font-size: 1.5rem;
   }
 }
 

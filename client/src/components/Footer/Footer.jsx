@@ -14,7 +14,7 @@ export const Footer = () => {
         <a href="https://github.com/Asilvazavala" target="_blank" rel="noopener noreferrer" >
           <i className='bx bxl-github'></i>
         </a>
-        <a href="https://antonio-silva-portfolio.onrender.com/" target="_blank" rel="noopener noreferrer" >
+        <a href="https://as-work.vercel.app/" target="_blank" rel="noopener noreferrer" >
           <i className='bx bxs-briefcase'></i>
         </a>
       </section>

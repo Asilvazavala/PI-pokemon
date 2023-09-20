@@ -18,7 +18,7 @@ export const Landing = () => {
         </header>
 
         <footer className={styles.homeSci}>
-          <a target="_blank" rel="noopener noreferrer" href="https://antonio-silva-portfolio.onrender.com/"><i className='bx bxs-briefcase'></i></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://as-work.vercel.app/"><i className='bx bxs-briefcase'></i></a>
           <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/antonio-silva-developer/"><i className='bx bxl-linkedin'></i></a>
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/Asilvazavala?tab=repositories"><i className='bx bxl-github'></i></a>
         </footer>

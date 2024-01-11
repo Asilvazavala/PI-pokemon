@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import pokemonSong from '../../assets/Audio/Pokémon - Atrápalos Ya (Latino).mp3';
+import { useFunctions } from '../../hooks/useFunctions'
+import { usePaginate } from '../../hooks/usePaginate'
 
 export const Audio = () => {
   const [isPlaying, setIsPlaying] = useState(true);
+
+  const { currentPokemon } = usePaginate();
+  const { dispatch, getAllPokemon } = useFunctions();
 
   const handlePlayPause = () => {
     const audio = document.getElementById('audioElement');
@@ -13,13 +18,18 @@ export const Audio = () => {
     }
     setIsPlaying(!isPlaying);
   };
+
+  useEffect(() => {
+    if (currentPokemon.length === 0) {
+      dispatch(getAllPokemon());
+    }
+  }, []);
   
   return (
     <div style={{ position: 'relative' }}>
       <audio
         id="audioElement"
         src={pokemonSong}
-        autoPlay
         loop
         style={{
           position: 'absolute',

@@ -5,6 +5,8 @@ export const Validation = (input) => {
   const numRegExp = /^([1-9]|[0-9][0-9]|[1-4][0-9][0-9]|500)$/; 
   // El valor debe estar entre 1 y 100
   const valRegExp = /^([1-9]|[0-9][0-9]|100)$/; 
+  // El valor debe estar entre 1 y 100
+  const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
   
   // Url imagen
   const urlRegExp = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%.\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%\+.~#?&//=]*)/;
@@ -29,6 +31,13 @@ export const Validation = (input) => {
     } else if (input.name.length > 30) {
       err.name = 'Name must have a maximum of 30 characters';
       }
+
+  // Validation Input email 
+  if (!input.email) {
+      err.email = 'Type a valid email';
+  } else if (!emailRegExp.test(input.email)) {
+      err.email = 'Value must be between 1-500';
+    }
 
   // Validation Input attack 
   if (!input.attack) {
